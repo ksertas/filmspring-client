@@ -15,6 +15,6 @@ export default function Footer() {
                     <li className={styles.logo}><Github /></li>
                 </ul>
             </div>
-        </footer >
+        </footer>
     )
 }

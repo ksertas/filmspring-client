@@ -2,17 +2,21 @@
 
 .input {
     padding: 1em 12em 1em 2em;
+    font-size: 1rem;
+    background-color: map-get($map: $colors, $key: gray-20);
     &:focus {
         outline: none;
+        background-color: map-get($map: $colors, $key: gray-40);
     }
 }
 
 .submit {
-    padding: 1.1em 2em;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1.05em 2em;
     outline: none;
     border: none;
-    font-weight: 600;
-    cursor: pointer;
     background-color: map-get($map: $colors, $key: primary);
     &:hover {
         background-color: map-get($map: $colors, $key: primary-120);
