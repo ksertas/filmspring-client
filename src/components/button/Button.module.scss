@@ -1,0 +1,26 @@
+@import '../../App.scss';
+
+.base {
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.5em 1.25em;
+    outline: none;
+}
+
+.primary {
+    border: 1px solid map-get($map: $colors, $key: primary);
+    color: map-get($map: $colors, $key: primary);
+}
+
+.secondary {
+    border: 1px solid map-get($map: $colors, $key: secondary);
+    color: map-get($map: $colors, $key: secondary);
+}
+
+.filled {
+    padding: 2em 4em;
+}
+
+.transparent {
+    background-color: transparent;
+}
