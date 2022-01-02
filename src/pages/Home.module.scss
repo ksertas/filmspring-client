@@ -1,0 +1,33 @@
+@import '../App.scss';
+
+.hero {
+    width: 100%;
+    padding: 0 0 10em;
+    background-image: url('../assets/img/hero.png');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+}
+
+.header_text {
+    font-size: map-get($map: $fontsizes, $key: header-1);
+    color: map-get($map: $colors, $key: white-100);
+    text-align: center;
+    font-weight: 600;
+    width: 75%;
+    margin: 2em 0 1em;
+}
+
+.subheader_text {
+    font-size: map-get($map: $fontsizes, $key: subheader-1);
+    color: map-get($map: $colors, $key: white-100);
+    margin: 0 0 2em;
+    text-align: center;
+    font-weight: 500;
+    width: 75%;
+}
+
+.reviews {
+    background-color: map-get($map: $colors, $key: black-100);
+}

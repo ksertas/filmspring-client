@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 $fontsizes: (
+  "header-1": 4rem,
   "header-2": 2rem,
+  "subheader-1": 1.8rem,
+  "subheader-2": 1.2rem,
+  "quote": 1.2rem,
 );
 
 $colors: (
@@ -23,6 +27,9 @@ $colors: (
   "warning-100": #D2781D,
   "error-100": #D24B1D,
   "info-100": #1D87D2,
+
+  "review-blue-1": #0E3C67,
+  "review-blue-2": #0C345A,
 );
 
 * {

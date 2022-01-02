@@ -1,0 +1,42 @@
+@import '../../App.scss';
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48em;
+    margin: 8em 6em 6em;
+    color: map-get($map: $colors, $key: white-100);
+    line-height: 2.4rem;
+}
+
+.card__top {
+    padding: 2.5em 3em;
+    background-color: map-get($map: $colors, $key: review-blue-1);
+}
+
+.card__bottom {
+    width: 100%;
+    padding: 1em 0;
+    background-color: map-get($map: $colors, $key: review-blue-2);
+}
+
+.quote {
+    font-size: map-get($map: $fontsizes, $key: quote);
+    font-weight: 400;
+}
+.reviewer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    margin: 0 1em 0 0;
+}
+
+.name {
+    font-size: map-get($map: $fontsizes, $key: subheader-2);
+    font-weight: 500;
+}
