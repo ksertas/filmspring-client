@@ -1,6 +1,6 @@
-@import '../../App.scss';
+@import '../../../App.scss';
 
-$search-icon: url('../../assets/icon/ant-design_search-outlined.svg');
+$search-icon: url('../../../assets/icon/ant-design_search-outlined.svg');
 
 .search {
     position: relative;
@@ -20,7 +20,7 @@ $search-icon: url('../../assets/icon/ant-design_search-outlined.svg');
     }
 }
 
-label {
+.label {
     position: relative;
     &::before {
         content: "";
@@ -32,6 +32,7 @@ label {
         padding-left: 1em;
         background: $search-icon;
         background-repeat: no-repeat;
+        cursor: text;
     }
 }
 

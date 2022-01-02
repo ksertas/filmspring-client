@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent as Logo } from '../../assets/img/logo.svg';
 import styles from './NavBar.module.scss';
-import SearchInput from '../input/SearchInput';
+import SearchInput from '../input/search/SearchInput';
 import Button from '../button/button';
 
 export default function NavBar() {
