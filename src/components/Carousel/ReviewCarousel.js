@@ -3,11 +3,11 @@ import styles from './ReviewCarousel.module.scss';
 import Carousel, { slidesToShowPlugin, autoplayPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import ReviewCard from '../../components/review/ReviewCard';
-import nico from '../../assets/img/nico.png';
-import jake from '../../assets/img/jake.png';
-import lisa from '../../assets/img/lisa.png';
-import john from '../../assets/img/john.png';
-import alice from '../../assets/img/alice.png';
+import nico from '../../assets/img/home/nico.png';
+import jake from '../../assets/img/home/jake.png';
+import lisa from '../../assets/img/home/lisa.png';
+import john from '../../assets/img/home/john.png';
+import alice from '../../assets/img/home/alice.png';
 
 export default function ReviewCarousel() {
     return (

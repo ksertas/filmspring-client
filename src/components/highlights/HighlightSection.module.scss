@@ -1,0 +1,46 @@
+@import '../../App.scss';
+
+.highlight_container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    background-color: map-get($map: $colors, $key: black-100);
+    color: white;
+    text-align: center;
+
+    div {
+        flex: 1;
+        padding: 6em 0;
+}
+
+    h3 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 2.5em;
+    }
+    h4 {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+}
+
+    .icon {
+        width: 5em;
+        height: 5em;
+        margin: 0 0 2em;
+    }
+
+    .discover {
+        border: solid map-get($map: $colors, $key: primary);
+        border-width: 5px 0; 
+    }
+
+    .like {
+        border: solid map-get($map: $colors, $key: error-100);
+        border-width: 5px 0;
+    }
+
+    .save {
+        border: solid map-get($map: $colors, $key: info-100);
+        border-width: 5px 0;
+    }

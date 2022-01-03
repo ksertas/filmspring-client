@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Footer.module.scss';
 import SearchInputCta from '../input/cta/SearchInputCta'
-import { ReactComponent as Github } from '../../assets/icon/github.svg';
-import { ReactComponent as Novi } from '../../assets/icon/novi.svg';
+import { ReactComponent as Github } from '../../assets/icon/footer/github.svg';
+import { ReactComponent as Novi } from '../../assets/icon/footer/novi.svg';
 
 export default function Footer() {
     return (

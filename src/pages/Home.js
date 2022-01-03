@@ -2,6 +2,8 @@ import React from 'react'
 import SearchInputCta from '../components/input/cta/SearchInputCta';
 import styles from './Home.module.scss';
 import ReviewCarousel from '../components/Carousel/ReviewCarousel';
+import FeatureSection from '../components/feature_section/FeatureSection';
+import HighlightSection from '../components/highlights/HighlightSection';
 
 export default function Home() {
     return (
@@ -15,6 +17,12 @@ export default function Home() {
             </header>
             <section className={styles.reviews}>
                 <ReviewCarousel />
+            </section>
+            <section className={styles.features}>
+                <FeatureSection />
+            </section>
+            <section className={styles.highlights}>
+                <HighlightSection />
             </section>
         </>
     )

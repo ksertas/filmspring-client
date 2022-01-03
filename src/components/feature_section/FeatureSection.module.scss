@@ -1,0 +1,9 @@
+@import '../../App.scss';
+
+.section_container {
+    // background-color: map-get($map: $colors, $key: gray-100);
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}

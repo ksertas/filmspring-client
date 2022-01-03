@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as Logo } from '../../assets/img/logo.svg';
+import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
 import styles from './NavBar.module.scss';
 import SearchInput from '../input/search/SearchInput';
 import Button from '../button/button';

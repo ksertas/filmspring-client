@@ -8,7 +8,7 @@
     margin: 8em 6em 6em;
     color: map-get($map: $colors, $key: white-100);
     line-height: 2.4rem;
-    box-shadow: -10px 10px map-get($map: $colors, $key: primary);
+    box-shadow: -10px 10px rgba($color: map-get($map: $colors, $key: primary), $alpha: 0.75);
 }
 
 .card__top {
