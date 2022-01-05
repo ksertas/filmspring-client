@@ -5,6 +5,7 @@ import Subheader from './Subheader';
 import Button from '../button/button.js'
 import { ReactComponent as Clock } from '../../assets/icon/media/clock.svg';
 import { ReactComponent as Plus } from '../../assets/icon/media/plus.svg';
+import MediaData from './MediaData';
 
 export default function Sidebar() {
     return (
@@ -14,10 +15,18 @@ export default function Sidebar() {
                 <Button primary filled><Plus className={styles.icon} />Add to watched</Button>
                 <Button neutral><Clock className={styles.icon} />Add to watch later</Button>
             </div>
-            <Subheader text="Genre" />
-            <Subheader text="Created by" />
-            <Subheader text="Directed by" />
-            <Subheader text="Episodes" />
+            <MediaData text="Genre">
+                Survival, Thriller, Horror, Drama
+            </MediaData>
+            <MediaData text="Created by">
+                Hwang Dong-hyuk
+            </MediaData>
+            <MediaData text="Directed by">
+                Hwang Dong-hyuk
+            </MediaData>
+            <MediaData text="Episodes">
+                9 (season 1)
+            </MediaData>
         </div>
     )
 }

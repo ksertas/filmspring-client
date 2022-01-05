@@ -1,0 +1,6 @@
+@import '../../App.scss';
+
+.text {
+    margin: -1em 0 1em;
+    color: map-get($map: $colors, $key: white-100);
+}
