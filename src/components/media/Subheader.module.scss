@@ -1,0 +1,14 @@
+@import '../../App.scss';
+
+.subheader_container {
+    width: 100%;
+    border-bottom: 1px solid map-get($map: $colors, $key: primary);
+    margin: 0 0 2em;
+}
+
+.container_text {
+    color: map-get($map: $colors, $key: white-100);
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 8px 0;
+}

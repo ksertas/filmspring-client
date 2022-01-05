@@ -1,0 +1,10 @@
+@import '../../App.scss';
+
+.plot_container {
+
+    p {
+        color: map-get($map: $colors, $key: white-100);
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+}

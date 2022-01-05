@@ -6,8 +6,8 @@
     display: flex;
     justify-content: center;
     gap: 10%;
-    position: sticky;
-    top: 5em;
+    // position: sticky;
+    // top: 5em;
     background-color: map-get($map: $colors, $key: gray-120);
 }
 
