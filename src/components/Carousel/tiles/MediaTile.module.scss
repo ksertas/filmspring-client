@@ -1,0 +1,28 @@
+@import '../../../App.scss';
+
+.invisible {
+    visibility: hidden;
+}
+
+.mediatile__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2em 0;
+}
+
+.mediatile__img {
+}
+
+.mediatile__title {
+    width: 50%;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 1em 0 0;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap; 
+    color: map-get($map: $colors, $key: white-100);
+}
