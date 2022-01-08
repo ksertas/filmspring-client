@@ -1,0 +1,9 @@
+@import '../App.scss';
+
+.background {
+    background-color: map-get($map: $colors, $key: gray-120);
+}
+
+.profile__container {
+    // background-color: map-get($map: $colors, $key: gray-120);
+}

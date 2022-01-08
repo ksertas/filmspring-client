@@ -15,7 +15,7 @@ import UserTile from './tiles/UserTile';
 import GroupTile from './tiles/GroupTile';
 import { AiOutlineArrowRight, AiOutlinePlus } from 'react-icons/ai';
 
-export default function ContentCarousel({ button_type }) {
+export default function ContentCarousel({ button_type, title }) {
 
     let icon;
     let button;
@@ -42,7 +42,7 @@ export default function ContentCarousel({ button_type }) {
     return (
         <div className={styles.carousel__container}>
             <div className={styles.title}>
-                <Subheader text="Title of tiles" />
+                <Subheader text={title} />
                 {button}
             </div>
             <Carousel

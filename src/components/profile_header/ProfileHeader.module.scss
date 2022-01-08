@@ -3,8 +3,7 @@
 .header__container {
     display: flex;
     flex-direction: column;
-    background-color: map-get($map: $colors, $key: gray-100);
-    // background-color: map-get($map: $colors, $key: black-100);
+    background-color: map-get($map: $colors, $key: black-100);
     color: white;
     align-items: center;
     padding: 1em 0 0;
