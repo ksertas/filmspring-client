@@ -1,0 +1,68 @@
+@import '../../App.scss';
+
+.header__container {
+    display: flex;
+    flex-direction: column;
+    background-color: map-get($map: $colors, $key: black-100);
+    color: white;
+    align-items: center;
+    padding: 1em 0 0;
+}
+
+.header__options {
+    width: 100%;
+    display: flex;
+    padding: 0 12em;
+    justify-content: flex-end;
+}
+
+.header__group {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 75%;
+    gap: 3em;
+}
+
+.group__img {
+    width: 12em;
+}
+
+.group__name {
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0.75em 0 0.1em;
+}
+
+.group__media {
+    width: 80%;
+    display: flex;
+    margin: 2em 0 1.2em;
+    justify-content: center;
+    gap: 3em;
+    text-align: center;
+    span {
+        font-size: 1.4rem;
+        font-weight: 600;
+    } p {
+        font-size: 1.15rem;
+    }
+}
+
+.group__nav {
+    width: 100%;
+    ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        text-align: center;
+    }
+    
+    li {
+        cursor: pointer;
+        flex-basis: 100%;
+        display: inline-block;
+        font-size: 1.6rem;
+        padding: 2em 0 1.25em;
+    }
+}
