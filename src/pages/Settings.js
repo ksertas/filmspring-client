@@ -5,6 +5,7 @@ import styles from './Settings.module.scss';
 import List from '../components/Carousel/List.js';
 import Button from '../components/button/button.js';
 import { useForm } from 'react-hook-form';
+import John from '../assets/img/home/john.png';
 
 export default function Settings() {
 
@@ -51,6 +52,18 @@ export default function Settings() {
                         {errors.bio && <p className={styles.input__error_message}>{errors.bio.message}</p>}
 
                         <Button type="submit" filled primary>Save</Button>
+                    </form>
+
+                    <form action="" className={styles.settings__profile_avatar}>
+                        <div className={styles.avatar__top}>
+                            <p>Change profile picture</p>
+                            <img src={John} alt="" />
+                        </div>
+                        <div className={styles.avatar__bottom}>
+                            <label htmlFor="avatar" className={styles.upload_btn}>Choose image to upload</label>
+                            <input type="file" name="avatar" id="avatar" onChange={() => console.log("submitted")} />
+                            <p className={styles.file_info}>File types: .png, .jpeg. Max file size: 5MB</p>
+                        </div>
                     </form>
                 </div>
             </List>
