@@ -11,13 +11,18 @@ export default function Settings() {
 
     document.body.classList.add(styles.background);
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register: registerPInfo, handleSubmit: submitPInfo, formState: { errors: errorsPINFO } } = useForm({
         defaultValues: {
             "firstName": "John",
             "lastName": "Doe",
-            "hideMedia": true,
         }
     });
+
+    const { handleSubmit: submitAvatar } = useForm();
+    const { register: registerEmail, handleSubmit: submitEmail, formState: { errors: errorsEmail } } = useForm();
+    const { register: registerPassword, handleSubmit: submitPassword, formState: { errors: errorsPassword } } = useForm();
+    const { register: registerDeletion, handleSubmit: submitDeletion, formState: { errors: errorsDeletion } } = useForm();
+    const { register: registerPrivacy, handleSubmit: submitPrivacy } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
@@ -30,41 +35,41 @@ export default function Settings() {
             </div>
             <List title="Profile settings">
                 <div className={styles.profile__container}>
-                    <form onSubmit={handleSubmit(onSubmit)} className={styles.profile_personal}>
+                    <form onSubmit={submitPInfo(onSubmit)} className={styles.profile_personal}>
 
                         <label htmlFor="first_name">First name</label>
-                        <input type="text" id="first_name" {...register("firstName", {
+                        <input type="text" id="first_name" {...registerPInfo("firstName", {
                             required: false, pattern: {
                                 value: /^[a-z ,.'-]+$/i,
                                 message: "Name contains illegal characters"
                             }
                         })} />
-                        {errors.firstName && <p className={styles.input__error_message}>{errors.firstName.message}</p>}
+                        {errorsPINFO.firstName && <p className={styles.input__error_message}>{errorsPINFO.firstName.message}</p>}
 
                         <label htmlFor="last_name">Last name</label>
-                        <input type="text" id="last_name" {...register("lastName", {
+                        <input type="text" id="last_name" {...registerPInfo("lastName", {
                             required: false, pattern: {
                                 value: /^[a-z ,.'-]+$/i,
                                 message: "Name contains illegal characters"
                             }
                         })} />
-                        {errors.lastName && <p className={styles.input__error_message}>{errors.lastName.message}</p>}
+                        {errorsPINFO.lastName && <p className={styles.input__error_message}>{errorsPINFO.lastName.message}</p>}
 
                         <label htmlFor="new_bio">About yourself</label>
-                        <textarea maxLength={150} type="text" id="new_bio" {...register("bio", { maxLength: { value: 150, message: "Bio must not exceed 150 characters" } })}></textarea>
-                        {errors.bio && <p className={styles.input__error_message}>{errors.bio.message}</p>}
+                        <textarea maxLength={150} type="text" id="new_bio" {...registerPInfo("bio", { maxLength: { value: 150, message: "Bio must not exceed 150 characters" } })}></textarea>
+                        {errorsPINFO.bio && <p className={styles.input__error_message}>{errorsPINFO.bio.message}</p>}
 
                         <Button type="submit" filled primary>Save</Button>
                     </form>
 
-                    <form action="" className={styles.profile_avatar}>
+                    <form onSubmit={submitAvatar(onSubmit)} className={styles.profile_avatar}>
                         <div className={styles.avatar__top}>
                             <p>Change profile picture</p>
                             <img src={John} alt="" />
                         </div>
                         <div className={styles.avatar__bottom}>
                             <label htmlFor="avatar" className={styles.upload_btn}>Choose image to upload</label>
-                            <input type="file" name="avatar" id="avatar" onChange={() => console.log("submitted")} />
+                            <input type="file" name="avatar" id="avatar" accept=".png, .jpeg, .jpg" onChange={() => console.log("submitted")} />
                             <p className={styles.file_info}>File types: .png, .jpeg. Max file size: 5MB</p>
                         </div>
                     </form>
@@ -72,55 +77,55 @@ export default function Settings() {
             </List>
             <List title="Account settings">
                 <div className={styles.account__container}>
-                    <form onSubmit={handleSubmit(onSubmit)} className={styles.account_email}>
+                    <form onSubmit={submitEmail(onSubmit)} className={styles.account_email}>
 
                         <h4>Change email</h4>
 
                         <label htmlFor="email">Email</label>
-                        <input type="text" id="email" {...register("email", {
-                            required: false, pattern: {
+                        <input type="text" id="email" {...registerEmail("email", {
+                            required: "This field is required.", pattern: {
                                 value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                                 message: "Invalid email format."
                             }
                         })} />
-                        {errors.email && <p className={styles.input__error_message}>{errors.email.message}</p>}
+                        {errorsEmail.email && <p className={styles.input__error_message}>{errorsEmail.email.message}</p>}
                         <Button type="submit" filled primary>Save</Button>
                     </form>
-                    <form action="" className={styles.account_password}>
+                    <form onSubmit={submitPassword(onSubmit)} className={styles.account_password}>
                         <h4>Change password</h4>
 
                         <label htmlFor="old_password">Old password</label>
-                        <input type="password" id="old_password" {...register("oldPassword", {
+                        <input type="password" id="old_password" {...registerPassword("oldPassword", {
                             required: "This field is required."
                         })} />
-                        {errors.oldPassword && <p className={styles.input__error_message}>{errors.oldPassword.message}</p>}
+                        {errorsPassword.oldPassword && <p className={styles.input__error_message}>{errorsPassword.oldPassword.message}</p>}
 
                         <label htmlFor="new_password">New password</label>
-                        <input type="password" id="new_password" {...register("newPassword", {
+                        <input type="password" id="new_password" {...registerPassword("newPassword", {
                             required: "This field is required."
                         })} />
-                        {errors.newPassword && <p className={styles.input__error_message}>{errors.newPassword.message}</p>}
+                        {errorsPassword.newPassword && <p className={styles.input__error_message}>{errorsPassword.newPassword.message}</p>}
                         <Button type="submit" filled primary>Save</Button>
                     </form>
-                    <form action="" className={styles.account_deletion}>
+                    <form onSubmit={submitDeletion(onSubmit)} className={styles.account_deletion}>
                         <h4>Delete account</h4>
 
                         <label htmlFor="old_password">Password</label>
-                        <input type="password" id="password" {...register("password", {
+                        <input type="password" id="password" {...registerDeletion("password", {
                             required: "This field is required."
                         })} />
-                        {errors.password && <p className={styles.input__error_message}>{errors.password.message}</p>}
+                        {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
                         <Button type="submit" filled id="delete_btn">Delete account</Button>
                     </form>
                 </div>
             </List>
             <List title="Privacy settings">
                 <div className={styles.privacy__container}>
-                    <form onSubmit={handleSubmit(onSubmit)} className={styles.privacy_media}>
+                    <form onSubmit={submitPrivacy(onSubmit)} className={styles.privacy_media}>
 
                         <div className={styles.options__container}>
                             <label htmlFor="hideMedia">Make my films and series lists private</label>
-                            <input type="checkbox" name="hideMedia" id="hideMedia" {...register("hideMedia")} />
+                            <input type="checkbox" name="hideMedia" id="hideMedia" {...registerPrivacy("hideMedia")} />
                         </div>
                         <Button type="submit" filled primary>Save</Button>
 
