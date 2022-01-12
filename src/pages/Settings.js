@@ -9,10 +9,13 @@ import John from '../assets/img/home/john.png';
 
 export default function Settings() {
 
+    document.body.classList.add(styles.background);
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             "firstName": "John",
             "lastName": "Doe",
+            "hideMedia": true,
         }
     });
 
@@ -26,8 +29,8 @@ export default function Settings() {
                 <h2>Account settings</h2>
             </div>
             <List title="Profile settings">
-                <div className={styles.settings__profile}>
-                    <form onSubmit={handleSubmit(onSubmit)} className={styles.settings__profile_personal}>
+                <div className={styles.profile__container}>
+                    <form onSubmit={handleSubmit(onSubmit)} className={styles.profile_personal}>
 
                         <label htmlFor="first_name">First name</label>
                         <input type="text" id="first_name" {...register("firstName", {
@@ -54,7 +57,7 @@ export default function Settings() {
                         <Button type="submit" filled primary>Save</Button>
                     </form>
 
-                    <form action="" className={styles.settings__profile_avatar}>
+                    <form action="" className={styles.profile_avatar}>
                         <div className={styles.avatar__top}>
                             <p>Change profile picture</p>
                             <img src={John} alt="" />
@@ -64,6 +67,63 @@ export default function Settings() {
                             <input type="file" name="avatar" id="avatar" onChange={() => console.log("submitted")} />
                             <p className={styles.file_info}>File types: .png, .jpeg. Max file size: 5MB</p>
                         </div>
+                    </form>
+                </div>
+            </List>
+            <List title="Account settings">
+                <div className={styles.account__container}>
+                    <form onSubmit={handleSubmit(onSubmit)} className={styles.account_email}>
+
+                        <h4>Change email</h4>
+
+                        <label htmlFor="email">Email</label>
+                        <input type="text" id="email" {...register("email", {
+                            required: false, pattern: {
+                                value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                message: "Invalid email format."
+                            }
+                        })} />
+                        {errors.email && <p className={styles.input__error_message}>{errors.email.message}</p>}
+                        <Button type="submit" filled primary>Save</Button>
+                    </form>
+                    <form action="" className={styles.account_password}>
+                        <h4>Change password</h4>
+
+                        <label htmlFor="old_password">Old password</label>
+                        <input type="password" id="old_password" {...register("oldPassword", {
+                            required: "This field is required."
+                        })} />
+                        {errors.oldPassword && <p className={styles.input__error_message}>{errors.oldPassword.message}</p>}
+
+                        <label htmlFor="new_password">New password</label>
+                        <input type="password" id="new_password" {...register("newPassword", {
+                            required: "This field is required."
+                        })} />
+                        {errors.newPassword && <p className={styles.input__error_message}>{errors.newPassword.message}</p>}
+                        <Button type="submit" filled primary>Save</Button>
+                    </form>
+                    <form action="" className={styles.account_deletion}>
+                        <h4>Delete account</h4>
+
+                        <label htmlFor="old_password">Password</label>
+                        <input type="password" id="password" {...register("password", {
+                            required: "This field is required."
+                        })} />
+                        {errors.password && <p className={styles.input__error_message}>{errors.password.message}</p>}
+                        <Button type="submit" filled id="delete_btn">Delete account</Button>
+                    </form>
+                </div>
+            </List>
+            <List title="Privacy settings">
+                <div className={styles.privacy__container}>
+                    <form onSubmit={handleSubmit(onSubmit)} className={styles.privacy_media}>
+
+                        <div className={styles.options__container}>
+                            <label htmlFor="hideMedia">Make my films and series lists private</label>
+                            <input type="checkbox" name="hideMedia" id="hideMedia" {...register("hideMedia")} />
+                        </div>
+                        <Button type="submit" filled primary>Save</Button>
+
                     </form>
                 </div>
             </List>
