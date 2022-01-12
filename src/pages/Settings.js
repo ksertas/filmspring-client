@@ -39,6 +39,7 @@ export default function Settings() {
 
                         <label htmlFor="first_name">First name</label>
                         <input type="text" id="first_name" {...registerPInfo("firstName", {
+                            minLength: { value: 2, message: "Must be at least 2 characters long." },
                             required: false, pattern: {
                                 value: /^[a-z ,.'-]+$/i,
                                 message: "Name contains illegal characters"
@@ -48,6 +49,7 @@ export default function Settings() {
 
                         <label htmlFor="last_name">Last name</label>
                         <input type="text" id="last_name" {...registerPInfo("lastName", {
+                            minLength: { value: 2, message: "Must be at least 2 characters long." },
                             required: false, pattern: {
                                 value: /^[a-z ,.'-]+$/i,
                                 message: "Name contains illegal characters"
