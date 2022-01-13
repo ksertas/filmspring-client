@@ -32,6 +32,11 @@ export default function Settings() {
         console.log(data);
     }
 
+    const onSubmitAccountDeletion = (data) => {
+        console.log(data);
+        setModalIsOpen(true);
+    }
+
     const handleDeletion = () => {
         console.log("Account deleted.")
         setModalIsOpen(false)
@@ -118,7 +123,7 @@ export default function Settings() {
                         {errorsPassword.newPassword && <p className={styles.input__error_message}>{errorsPassword.newPassword.message}</p>}
                         <Button type="submit" filled primary>Save</Button>
                     </form>
-                    <form onSubmit={submitDeletion(onSubmit)} className={styles.account_deletion}>
+                    <form onSubmit={submitDeletion(onSubmitAccountDeletion)} className={styles.account_deletion}>
                         <h4>Delete account</h4>
 
                         <label htmlFor="old_password">Password</label>
@@ -127,7 +132,6 @@ export default function Settings() {
                         })} />
                         {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
                         <Button type="submit" filled id="delete_btn">Delete account</Button>
-                        <button onClick={() => setModalIsOpen(true)}>Test modal</button>
 
                         <Modal
                             isOpen={modalIsOpen}
