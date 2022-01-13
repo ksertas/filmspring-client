@@ -1,16 +1,20 @@
 // Username, Bio, Email inputs will have default values of current user's from API.
 
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Settings.module.scss';
 import List from '../components/Carousel/List.js';
 import Button from '../components/button/button.js';
 import { useForm } from 'react-hook-form';
 import John from '../assets/img/home/john.png';
+import Modal from 'react-modal';
 
 export default function Settings() {
 
     document.body.classList.add(styles.background);
+    Modal.setAppElement("#root");
 
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const { register: registerPInfo, handleSubmit: submitPInfo, formState: { errors: errorsPINFO } } = useForm({
         defaultValues: {
             "firstName": "John",
@@ -26,6 +30,11 @@ export default function Settings() {
 
     const onSubmit = (data) => {
         console.log(data);
+    }
+
+    const handleDeletion = () => {
+        console.log("Account deleted.")
+        setModalIsOpen(false)
     }
 
     return (
@@ -118,6 +127,35 @@ export default function Settings() {
                         })} />
                         {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
                         <Button type="submit" filled id="delete_btn">Delete account</Button>
+                        <button onClick={() => setModalIsOpen(true)}>Test modal</button>
+
+                        <Modal
+                            isOpen={modalIsOpen}
+                            onRequestClose={() => setModalIsOpen(false)}
+                            style={
+                                {
+                                    overlay: {
+                                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                    },
+                                    content: {
+                                        backgroundColor: '#2E2B29',
+                                        width: '60%',
+                                        height: 'fit-content',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        margin: 'auto',
+                                    }
+                                }
+                            }>
+                            <div className={styles.modal__container}>
+                                <h4 className={styles.modal__header}>Account deletion</h4>
+                                <p className={styles.modal__description}>Account deletion is permanent and cannot be undone. Are you sure you want to continue?</p>
+                                <div className={styles.modal__btn_container}>
+                                    <button onClick={() => setModalIsOpen(false)} className={styles.modal__cancel_btn}>Cancel</button>
+                                    <button onClick={handleDeletion} className={styles.modal__delete_btn}>Delete account permanently</button>
+                                </div>
+                            </div>
+                        </Modal>
                     </form>
                 </div>
             </List>
