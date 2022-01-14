@@ -10,9 +10,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12em;
+    margin: 2em auto 12em;
     width: 50%;
-    height: 60vh;
+    height: 65vh;
     
 
     .header__container {
@@ -20,7 +20,7 @@
             font-weight: 500;
             font-size: 2rem;
             text-align: center;
-            margin: 4em 0 1em;
+            padding: 4em 0 1em;
         }
     }
 
@@ -52,6 +52,17 @@
             background-color: map-get($map: $colors, $key: gray-80);
             &:focus, &:active {
                 outline: 2px solid map-get($map: $colors, $key: secondary);
+            }
+        }
+
+        .password_div {
+            position: relative;
+
+            svg {
+                color: map-get($map: $colors, $key: gray-40);
+                position: absolute;
+                right: 15px;
+                top: 59px;
             }
         }
         

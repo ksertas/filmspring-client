@@ -1,12 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import styles from './Register.module.scss';
 import Button from '..//components/button/button.js';
+import { AiFillEye } from 'react-icons/ai';
 
 export default function Register() {
 
     document.body.classList.add(styles.background);
 
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const password = useRef({});
     password.current = watch("password", "");
@@ -41,21 +43,28 @@ export default function Register() {
                     })} />
                     {errors.email && <p className={styles.input__error_message}>{errors.email.message}</p>}
 
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" {...register("password", {
-                        required: "This field is required."
-                    })
-                    } />
+                    <div className={styles.password_div}>
+                        <label htmlFor="password">Password</label>
+                        <input type={showPassword ? "text" : "password"} id="password" {...register("password", {
+                            required: "This field is required."
+                        })
+                        } />
+                        <AiFillEye onClick={() => setShowPassword(!showPassword)} />
+                    </div>
                     {errors.password && <p className={styles.input__error_message}>{errors.password.message}</p>}
 
-                    <label htmlFor="password_repeat">Repeat password</label>
-                    <input type="password" id="password_repeat"{...register("password_repeat", {
-                        required: "This field is required.",
-                        validate: value => {
-                            return value === password.current || "Passwords do not match";
-                        }
-                    })
-                    } />
+                    <div className={styles.password_div}>
+                        <label htmlFor="password_repeat">Repeat password</label>
+                        <input type={showPassword ? "text" : "password"} id="password_repeat"{...register("password_repeat", {
+                            required: "This field is required.",
+                            validate: value => {
+                                return value === password.current || "Passwords do not match";
+                            }
+                        })
+                        } />
+                        <AiFillEye onClick={() => setShowPassword(!showPassword)} />
+                    </div>
+
                     {errors.password_repeat && <p className={styles.input__error_message}>{errors.password_repeat.message}</p>}
 
 
