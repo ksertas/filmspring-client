@@ -20,6 +20,7 @@
             font-weight: 500;
             font-size: 2rem;
             text-align: center;
+            margin: 4em 0 1em;
         }
     }
 
@@ -31,6 +32,7 @@
             font-size: 0.9rem;
             color: map-get($map: $colors, $key: warning-100);
             margin: -7px 0 0;
+            width: 20em;
         }
         
         label {

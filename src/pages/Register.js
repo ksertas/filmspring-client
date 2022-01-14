@@ -23,6 +23,15 @@ export default function Register() {
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.register_form}>
 
+                    <label htmlFor="username">Username</label>
+                    <input type="text" name="username" id="username" {...register("username", {
+                        required: "Username must be between 3 and 32 characters long.", pattern: {
+                            value: /^(?=.{3,32}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+                            message: "Invalid username format."
+                        }
+                    })} />
+                    {errors.username && <p className={styles.input__error_message}>{errors.username.message}</p>}
+
                     <label htmlFor="email">Email address</label>
                     <input type="email" id="email" {...register("email", {
                         required: "This field is required.", pattern: {
