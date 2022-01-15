@@ -1,0 +1,100 @@
+@import '../../App.scss';
+
+
+.input__error_message {
+    font-size: 0.9rem;
+    color: map-get($map: $colors, $key: warning-100);
+    margin: -7px 0 0;
+}
+
+.group__container {
+    width: 90%;
+    margin: 4em auto;
+    padding: 0 0 2em;
+    border-bottom: 1px solid map-get($map: $colors, $key: primary);
+    background-color: map-get($map: $colors, $key: black-100);
+    .title {
+        h4 {
+            padding: 1em 1.5em;
+            width: fit-content;
+        }
+    
+        position: relative;
+        .header__button {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            position: absolute;
+            top: 28%;
+            right: 2.5em;
+            padding: 0.5em 1.25em;
+            font-size: 0.9rem;
+            color: map-get($map: $colors, $key: white-100);
+            background-color: map-get($map: $colors, $key: gray-120);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover {
+                background-color: map-get($map: $colors, $key: gray-100);
+            }
+        }
+    }
+
+    .content__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 4em 0;
+        gap: 4em;
+        .content__title {
+            color: map-get($map: $colors, $key: white-100);
+            font-weight: 600;
+            font-size: 2rem;
+        }
+        .content__btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+            padding: 0.5em 1.5em;
+            outline: none;
+            font-weight: 500;
+            border: 2px solid map-get($map: $colors, $key: primary);
+            color: map-get($map: $colors, $key: black-100);
+            background-color: map-get($map: $colors, $key: primary);
+            &:hover {
+                border: 2px solid map-get($map: $colors, $key: primary-80);
+                color: map-get($map: $colors, $key: primary-80);
+            }
+        }
+    }
+}
+.group_form {
+    color: map-get($map: $colors, $key: white-100);
+    display: flex;
+    flex-direction: column;
+    margin: 2em auto;
+    text-align: center;
+    width: 70%;
+
+    label {
+        font-size: 1.5rem;
+        padding: 1em 0;
+    }
+    input[type=text] {
+        padding: 0.75em 1em;
+        margin: 0 0 1em 0;
+        border: none;
+        color: map-get($map: $colors, $key: white-100);
+        background-color: map-get($map: $colors, $key: gray-80);
+        &:focus, &:active {
+            outline: 2px solid map-get($map: $colors, $key: secondary);
+        }
+    }
+    button {
+        margin: 2em 0;
+    }
+}
+
