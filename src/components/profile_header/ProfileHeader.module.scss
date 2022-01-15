@@ -14,8 +14,10 @@
     display: flex;
     padding: 0 12em;
     justify-content: flex-end;
-    button {
-        
+
+    .header__edit_profile {
+        @include btn;
+        @include btn_primary;
     }
 }
 

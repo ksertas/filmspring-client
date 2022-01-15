@@ -2,7 +2,7 @@
 
 @import '../../App.scss';
 
-.carousel__container {
+.list__container {
     width: 90%;
     margin: 4em auto;
     padding: 0 0 2em;
@@ -21,7 +21,7 @@
         @include btn;
         @include btn_neutral_dark;
         position: absolute;
-        top: 25%;
+        top: 28%;
         right: 2.5em;
     }
 }

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styles from './NavBarLoggedIn.module.scss';
 import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
 import SearchInput from '../input/search/SearchInput';
-import Button from '../button/button';
 import John from '../../assets/img/home/john.png';
 import { AiFillCaretDown } from 'react-icons/ai';
 

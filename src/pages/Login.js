@@ -1,8 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import styles from './Login.module.scss';
-import Button from '..//components/button/button.js';
-import tempInput from './Settings.module.scss';
 
 export default function Login() {
 
@@ -37,7 +35,7 @@ export default function Login() {
                         required: "This field is required."
                     })} />
                     {errors.password && <p className={styles.input__error_message}>{errors.password.message}</p>}
-                    <Button type="submit" filled primary>Login</Button>
+                    <button type="submit" className={styles.login_btn}>Login</button>
                 </form>
             </div>
         </div>

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import styles from './Register.module.scss';
-import Button from '..//components/button/button.js';
 import { AiFillEye } from 'react-icons/ai';
 
 export default function Register() {
@@ -68,7 +67,7 @@ export default function Register() {
                     {errors.password_repeat && <p className={styles.input__error_message}>{errors.password_repeat.message}</p>}
 
 
-                    <Button type="submit" filled primary>Register account</Button>
+                    <button type="submit" className={styles.register_btn}>Register account</button>
                 </form>
             </div>
         </div>

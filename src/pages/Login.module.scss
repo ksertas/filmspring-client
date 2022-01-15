@@ -60,7 +60,9 @@
                 outline: 2px solid map-get($map: $colors, $key: secondary);
             }
         }
-        button {
+        .login_btn {
+            @include btn;
+            @include btn_primary; 
             margin: 2em 0;
         }
     }
