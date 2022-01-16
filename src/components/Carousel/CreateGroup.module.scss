@@ -7,24 +7,7 @@
 }
 
 .group__container {
-    @include carousel_container;
-
-    .title {
-        position: relative;
-        
-        h4 {
-            padding: 1em 1.5em;
-            width: fit-content;
-        }
-        
-        .header__button {
-            @include btn;
-            @include btn_neutral_dark;
-            position: absolute;
-            top: 25%;
-            right: 2.5em;
-        }
-    }
+    @include carousel;
 
     .content__container {
         display: flex;
@@ -43,6 +26,7 @@
         }
     }
 }
+
 .group_form {
     color: map-get($map: $colors, $key: white-100);
     display: flex;

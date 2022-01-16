@@ -18,10 +18,12 @@ export default function CreateGroup() {
 
     return (
         <div className={styles.group__container}>
-            <div className={styles.title}>
-                <Subheader text="Your groups" />
-                <button className={styles.header__button} onClick={() => setModalIsOpen(!modalIsOpen)}><AiOutlinePlus />Create group</button>
-            </div>
+            <header className={styles.title}>
+                <h4>Your groups</h4>
+                <div>
+                    <button className={styles.header__button} onClick={() => setModalIsOpen(!modalIsOpen)}><AiOutlinePlus />Create group</button>
+                </div>
+            </header>
             <div className={styles.content__container}>
                 <p className={styles.content__title}>Create your first group!</p>
                 <button className={styles.content__btn} onClick={() => setModalIsOpen(!modalIsOpen)}><AiOutlinePlus />Create your group</button>

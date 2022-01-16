@@ -142,12 +142,42 @@ $colors: (
   width: 20em;
 }
 
-@mixin carousel_container {
+@mixin carousel_container {}
+
+@mixin carousel {
   width: 90%;
   margin: 4em auto;
   padding: 0 0 2em;
   border-bottom: 1px solid map-get($map: $colors, $key: primary);
   background-color: map-get($map: $colors, $key: black-100);
+
+  header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 0 2em;
+    padding: 1.5em 1.5em;
+    border-bottom: 1px solid map-get($map: $colors, $key: primary);
+
+    h3, h4, h5 {
+        color: map-get($map: $colors, $key: white-100);
+        font-size: 1.4rem;
+        font-weight: 400;
+        width: fit-content;
+    }
+
+    div {
+      display: flex;
+      gap: 1.5em;
+      button {
+        @include btn;
+        @include btn_neutral_dark;
+      }
+    }
+    
+  }
 }
 
 * {
