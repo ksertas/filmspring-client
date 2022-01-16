@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './Profile.module.scss';
-import ContentCarousel from '../components/Carousel/ContentCarousel'
-import ProfileHeader from '../components/profile_header/ProfileHeader'
-import UserListTile from '../components/Carousel/tiles/UserListTile';
-import List from '../components/Carousel/List.js';
-import ProfileHeaderGroups from '../components/profile_header/ProfileHeaderGroups';
-import CreateGroup from '../components/Carousel/CreateGroup';
+import ContentCarousel from '../../components/Carousel/ContentCarousel'
+import ProfileHeader from '../../components/profile_header/ProfileHeader'
+import UserListTile from '../../components/Carousel/tiles/UserListTile';
+import List from '../../components/Carousel/List.js';
+import ProfileHeaderGroups from '../../components/profile_header/ProfileHeaderGroups';
+import CreateGroup from '../../components/Carousel/CreateGroup';
 
 export default function Profile() {
 

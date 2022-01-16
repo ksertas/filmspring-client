@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react'
 import styles from './Settings.module.scss';
-import List from '../components/Carousel/List.js';
+import List from '../../components/Carousel/List.js';
 import { useForm } from 'react-hook-form';
-import John from '../assets/img/home/john.png';
+import John from '../../assets/img/home/john.png';
 import Modal from 'react-modal';
 
 export default function Settings() {

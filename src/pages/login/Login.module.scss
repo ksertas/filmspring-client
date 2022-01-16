@@ -1,38 +1,44 @@
-@import '../App.scss';
+@import '../../App.scss';
 
 .background {
     background-color: map-get($map: $colors, $key: gray-120);
 }
 
-.register__container {
-    color: map-get($map: $colors, $key: white-100);
+.login__container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 2em auto 12em;
+    margin: 0 auto 12em;
     width: 50%;
-    height: 65vh;
+    height: 60vh;
     
-
     .header__container {
+        display: flex;
+        flex-direction: column;
+        margin: 2em 0;
+        text-align: center;
+        color: map-get($map: $colors, $key: white-100);
+
         h2 {
-            font-weight: 500;
             font-size: 2rem;
-            text-align: center;
-            padding: 4em 0 1em;
+            font-weight: 500;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
         }
     }
 
-    .register_form {
+    .login_form {
         display: flex;
         flex-direction: column;
 
-         .input__error_message {
+        .input__error_message {
             font-size: 0.9rem;
             color: map-get($map: $colors, $key: warning-100);
             margin: -7px 0 0;
-            width: 20em;
         }
         
         label {
@@ -43,7 +49,7 @@
             width: fit-content;
         }
         
-        input[type=text], input[type=email], input[type=password] {
+        input[type=text], input[type=email] {
             width: 24em;
             padding: 0.75em 1em;
             margin: 0 0 1em 0;
@@ -54,22 +60,12 @@
                 outline: 2px solid map-get($map: $colors, $key: secondary);
             }
         }
-
-        .password_div {
-            position: relative;
-
-            svg {
-                color: map-get($map: $colors, $key: gray-40);
-                position: absolute;
-                right: 15px;
-                top: 59px;
-            }
-        }
-        
-        .register_btn {
+        .login_btn {
             @include btn;
-            @include btn_primary;
+            @include btn_primary; 
             margin: 2em 0;
         }
     }
 }
+
+
