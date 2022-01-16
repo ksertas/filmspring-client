@@ -22,15 +22,15 @@ export default function ContentCarousel({ button_type, title }) {
     switch (button_type) {
         case "create group":
             icon = <AiOutlinePlus />
-            button = <button className={styles.carousel__button}>Create group {icon}</button>
+            button = <button className={styles.carousel__button}>{icon}Create group</button>
             break;
         case "add user":
             icon = <AiOutlinePlus />
-            button = <button className={styles.carousel__button}>Add user {icon}</button>
+            button = <button className={styles.carousel__button}>{icon}Add user</button>
             break;
         case "see all":
             icon = <AiOutlineArrowRight />
-            button = <button className={styles.carousel__button}>See all {icon}</button>
+            button = <button className={styles.carousel__button}>{icon}See all</button>
             break;
 
         default:
@@ -57,8 +57,6 @@ export default function ContentCarousel({ button_type, title }) {
                 ]} draggable={true}
                 animationSpeed={250}>
                 {/* empty divs needed to avoid maximum update depth error */}
-                {/* <MediaTile img={Pidgeon} title="The scary pidgeon" />
-                <MediaTile img={Discover} title="Discover" /> */}
                 <MediaTile img={Mountain} title="Big tall mountains in the middle of nowhere" />
                 <MediaTile img={Tiger} title="Nature" />
                 <GroupTile img={Colleagues} name="Group 1" count={2} />

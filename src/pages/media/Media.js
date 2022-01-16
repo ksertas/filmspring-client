@@ -1,9 +1,9 @@
 import React from 'react'
-import Cast from '../components/media/Cast';
-import Header from '../components/media/Header';
-import Plot from '../components/media/Plot';
-import Sidebar from '../components/media/Sidebar';
-import Subheader from '../components/media/Subheader';
+import Cast from '../../components/media/Cast';
+import Header from '../../components/media/Header';
+import Plot from '../../components/media/Plot';
+import Sidebar from '../../components/media/Sidebar';
+import Subheader from '../../components/media/Subheader';
 import styles from './Media.module.scss';
 
 export default function Media() {

@@ -1,9 +1,9 @@
 import React from 'react'
-import SearchInputCta from '../components/input/cta/SearchInputCta';
+import SearchInputCta from '../../components/input/cta/SearchInputCta';
 import styles from './Home.module.scss';
-import ReviewCarousel from '../components/Carousel/ReviewCarousel';
-import FeatureSection from '../components/feature_section/FeatureSection';
-import HighlightSection from '../components/highlights/HighlightSection';
+import ReviewCarousel from '../../components/Carousel/ReviewCarousel';
+import FeatureSection from '../../components/feature_section/FeatureSection';
+import HighlightSection from '../../components/highlights/HighlightSection';
 
 export default function Home() {
     return (

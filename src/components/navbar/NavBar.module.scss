@@ -10,7 +10,7 @@ nav {
 }
 
 .logo {
-    width: 70%;
+    width: 12em;
 }
 
 .nav__right {
@@ -19,6 +19,15 @@ nav {
         li {
             display: inline-block;
             margin: 0 0.75em;
-        }     
+        }
+        .btn_login {
+            @include btn;
+            @include btn_neutral_ghost;
+        }
+
+        .btn_signup {
+            @include btn;
+            @include btn_primary_ghost;
+        }
     }
 }

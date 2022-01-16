@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import styles from './CreateGroup.module.scss';
 import Subheader from '../media/Subheader.js';
 import { useForm } from 'react-hook-form';
-import Button from '../button/button.js';
 import Modal from 'react-modal';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineArrowRight } from 'react-icons/ai';
 
 export default function CreateGroup() {
 
@@ -55,7 +54,7 @@ export default function CreateGroup() {
                             }
                         })} />
                         {errors.groupName && <p className={styles.input__error_message}>{errors.groupName.message}</p>}
-                        <Button type="submit" filled primary>Create group</Button>
+                        <button type="submit"><AiOutlineArrowRight />Create group</button>
                     </form>
                 </Modal>
             </div>

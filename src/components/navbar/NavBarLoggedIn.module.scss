@@ -56,6 +56,7 @@ nav {
     top: 5em;
     left: -2em;
     width: 12em;
+    z-index: 50;
     background-color: map-get($map: $colors, $key: gray-120);
     padding: 0.75em 1em;
     border-radius: 4px;

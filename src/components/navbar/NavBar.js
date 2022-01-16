@@ -2,7 +2,6 @@ import React from 'react'
 import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
 import styles from './NavBar.module.scss';
 import SearchInput from '../input/search/SearchInput';
-import Button from '../button/button';
 
 export default function NavBar() {
     return (
@@ -14,8 +13,8 @@ export default function NavBar() {
                 <div className={styles.nav__right}>
                     <ul>
                         <li><SearchInput /></li>
-                        <li><Button neutral>Sign in</Button></li>
-                        <li><Button primary>Sign up</Button></li>
+                        <li><button className={styles.btn_login}>Log in</button></li>
+                        <li><button className={styles.btn_signup}>Sign up</button></li>
                     </ul>
                 </div>
             </nav>

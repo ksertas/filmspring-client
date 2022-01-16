@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './ProfileHeaderGroups.module.scss';
-import Button from '../button/button.js';
 import { BsFillPencilFill } from 'react-icons/bs';
 import Jake from '../../assets/img/home/jake.png';
 
@@ -8,7 +7,7 @@ export default function ProfileHeaderGroups() {
     return (
         <div className={styles.header__container}>
             <div className={styles.header__options}>
-                <Button primary filled><BsFillPencilFill />Edit group profile</Button>
+                <button><BsFillPencilFill />Edit group profile</button>
             </div>
             <div className={styles.header__group}>
                 <img src={Jake} alt="" className={styles.group__img} />

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './ReviewCarousel.module.scss';
-import Carousel, { slidesToShowPlugin, autoplayPlugin } from '@brainhubeu/react-carousel';
+import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import ReviewCard from '../../components/review/ReviewCard';
 import nico from '../../assets/img/home/nico.png';
@@ -14,22 +14,14 @@ export default function ReviewCarousel() {
         <Carousel className={styles.carousel}
             plugins={[
                 'infinite',
-                'autoplay',
+                'arrows',
                 {
                     resolve: slidesToShowPlugin,
                     options: {
                         numberOfSlides: 2
                     }
-                },
-                {
-                    resolve: autoplayPlugin,
-                    options: {
-                        interval: 200,
-                    }
                 }
             ]}
-            animationSpeed={200000}
-            draggable={false}
         >
             <ReviewCard name="Nico Flamelamb" img={nico}>
                 Filmspring is an amazing service which lets you keep track of all your favorite films and series, join groups, rate media and much more. I'm glad I registered!

@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react'
 import styles from './Settings.module.scss';
-import List from '../components/Carousel/List.js';
-import Button from '../components/button/button.js';
+import List from '../../components/Carousel/List.js';
 import { useForm } from 'react-hook-form';
-import John from '../assets/img/home/john.png';
+import John from '../../assets/img/home/john.png';
 import Modal from 'react-modal';
 
 export default function Settings() {
@@ -75,7 +74,7 @@ export default function Settings() {
                         <textarea maxLength={150} type="text" id="new_bio" {...registerPInfo("bio", { maxLength: { value: 150, message: "Bio must not exceed 150 characters" } })}></textarea>
                         {errorsPINFO.bio && <p className={styles.input__error_message}>{errorsPINFO.bio.message}</p>}
 
-                        <Button type="submit" filled primary>Save</Button>
+                        <button type="submit" className={styles.save_btn}>Save</button>
                     </form>
 
                     <form onSubmit={submitAvatar(onSubmit)} className={styles.profile_avatar}>
@@ -105,7 +104,7 @@ export default function Settings() {
                             }
                         })} />
                         {errorsEmail.email && <p className={styles.input__error_message}>{errorsEmail.email.message}</p>}
-                        <Button type="submit" filled primary>Save</Button>
+                        <button type="submit" className={styles.save_btn}>Save</button>
                     </form>
                     <form onSubmit={submitPassword(onSubmit)} className={styles.account_password}>
                         <h4>Change password</h4>
@@ -121,7 +120,7 @@ export default function Settings() {
                             required: "This field is required."
                         })} />
                         {errorsPassword.newPassword && <p className={styles.input__error_message}>{errorsPassword.newPassword.message}</p>}
-                        <Button type="submit" filled primary>Save</Button>
+                        <button type="submit" className={styles.save_btn}>Save</button>
                     </form>
                     <form onSubmit={submitDeletion(onSubmitAccountDeletion)} className={styles.account_deletion}>
                         <h4>Delete account</h4>
@@ -131,7 +130,7 @@ export default function Settings() {
                             required: "This field is required."
                         })} />
                         {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
-                        <Button type="submit" filled id="delete_btn">Delete account</Button>
+                        <button type="submit">Delete account</button>
 
                         <Modal
                             isOpen={modalIsOpen}
@@ -171,7 +170,7 @@ export default function Settings() {
                             <label htmlFor="hideMedia">Make my films and series lists private</label>
                             <input type="checkbox" name="hideMedia" id="hideMedia" {...registerPrivacy("hideMedia")} />
                         </div>
-                        <Button type="submit" filled primary>Save</Button>
+                        <button type="submit" className={styles.save_btn}>Save</button>
 
                     </form>
                 </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './ProfileHeader.module.scss';
-import Button from '../button/button.js';
 import { BsFillPencilFill } from 'react-icons/bs';
 import Jake from '../../assets/img/home/jake.png';
 
@@ -8,7 +7,7 @@ export default function ProfileHeader() {
     return (
         <div className={styles.header__container}>
             <div className={styles.header__options}>
-                <Button primary filled><BsFillPencilFill />Edit profile</Button>
+                <button className={styles.header__edit_profile}><BsFillPencilFill />Edit profile</button>
             </div>
             <div className={styles.header__person}>
                 <img src={Jake} alt="" className={styles.person__img} />
