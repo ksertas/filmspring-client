@@ -142,6 +142,14 @@ $colors: (
   width: 20em;
 }
 
+@mixin carousel_container {
+  width: 90%;
+  margin: 4em auto;
+  padding: 0 0 2em;
+  border-bottom: 1px solid map-get($map: $colors, $key: primary);
+  background-color: map-get($map: $colors, $key: black-100);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

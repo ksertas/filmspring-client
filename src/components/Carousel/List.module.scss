@@ -3,11 +3,7 @@
 @import '../../App.scss';
 
 .list__container {
-    width: 90%;
-    margin: 4em auto;
-    padding: 0 0 2em;
-    border-bottom: 1px solid map-get($map: $colors, $key: primary);
-    background-color: map-get($map: $colors, $key: black-100);
+    @include carousel_container;
 }
 
 .title {
