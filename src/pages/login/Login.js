@@ -1,15 +1,26 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useState } from 'react'
+import jwt_decode from 'jwt-decode';
 import { useForm } from 'react-hook-form';
+import { ax } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
 import styles from './Login.module.scss';
 
 export default function Login() {
 
     document.body.classList.add(styles.background);
 
+    const { user, setUser } = useContext(UserContext);
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const loginUser = async (data) => {
+        try {
+            const result = await axios.post("http://localhost:8080/api/users/login", data);
+            window.localStorage.setItem("token", result.data.jwt);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -19,19 +30,19 @@ export default function Login() {
                 <h3>Please login</h3>
             </div>
             <div>
-                <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+                <form onSubmit={handleSubmit(loginUser)} className={styles.login_form}>
 
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" id="email" {...register("email", {
-                        required: "This field is required.", pattern: {
-                            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                            message: "Invalid email format."
+                    <label htmlFor="username">Username</label>
+                    <input type="text" id="username" {...register("username", {
+                        required: "Username must be between 3 and 32 characters long.", pattern: {
+                            value: /^(?=.{3,32}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+                            message: "Invalid username format."
                         }
                     })} />
-                    {errors.email && <p className={styles.input__error_message}>{errors.email.message}</p>}
+                    {errors.username && <p className={styles.input__error_message}>{errors.username.message}</p>}
 
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" {...register("password", {
+                    <input type="password" id="password" {...register("password", {
                         required: "This field is required."
                     })} />
                     {errors.password && <p className={styles.input__error_message}>{errors.password.message}</p>}
