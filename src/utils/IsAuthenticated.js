@@ -1,5 +1,3 @@
-
-
 export default function IsAuthenticated() {
-    return localStorage.getItem("token").length >= 10;
+    return localStorage.getItem("token") && localStorage.getItem("avatarSrc");
 }
