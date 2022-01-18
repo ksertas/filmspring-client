@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './NavBarLoggedIn.module.scss';
 import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
 import SearchInput from '../input/search/SearchInput';
 import John from '../../assets/img/home/john.png';
 import { AiFillCaretDown } from 'react-icons/ai';
+import { UserContext } from '../../context/UserContext';
 
 export default function NavBarLoggedIn() {
 
     const [menuHidden, setMenuHidden] = useState(true);
+    const { user } = useContext(UserContext);
 
     function handleProfileMenu() {
         setMenuHidden(!menuHidden);
@@ -25,7 +27,7 @@ export default function NavBarLoggedIn() {
                         <li><SearchInput /></li>
                         <li className={styles.profile__item}>
                             <button className={styles.profile__button} onClick={handleProfileMenu}>
-                                <img src={John} alt="" className={styles.profile__img} /><AiFillCaretDown className={styles.caret} />
+                                <img src={user.avatarSrc} alt="avatar" className={styles.profile__img} /><AiFillCaretDown className={styles.caret} />
                             </button>
                             {menuHidden ? '' :
                                 <div className={styles.profile_menu}>

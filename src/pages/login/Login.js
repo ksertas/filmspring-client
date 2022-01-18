@@ -23,7 +23,7 @@ export default function Login() {
         if (loggedIn) {
             setupUser();
         }
-        if (loggedIn === false) {
+        if (!loggedIn) {
             localStorage.clear();
             sessionStorage.clear();
             setUser({});
