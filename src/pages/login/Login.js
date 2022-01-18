@@ -6,49 +6,29 @@ import styles from './Login.module.scss';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
 import { ax } from '../../api/api';
 import jwt_decode from 'jwt-decode';
+import IsAuthenticated from '../../utils/IsAuthenticated';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     document.body.classList.add(styles.background);
 
-    const { user, setUser } = useContext(UserContext);
-    const [loggedIn, setLoggedIn] = useState(false);
+    const { login } = useContext(UserContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         loginUser(data);
     }
 
-    useEffect(() => {
-        if (loggedIn) {
-            setupUser();
-        }
-        if (!loggedIn) {
-            localStorage.clear();
-            sessionStorage.clear();
-            setUser({});
-        }
-    }, [loggedIn])
-
     const loginUser = async (data) => {
         try {
             const result = await axios.post("http://localhost:8080/api/users/login", data);
-            window.localStorage.setItem("token", result.data.jwt);
-            setLoggedIn(true);
-        } catch (error) {
-            console.log(error);
+            login(result.data.jwt);
+            navigate("/profile");
+        } catch (e) {
+            console.log(e.response);
         }
-    }
-
-    const setupUser = async () => {
-        const token = window.localStorage.getItem("token");
-        const username = jwt_decode(token).sub;
-        const userInfo = await ax.get(`http://localhost:8080/api/users/${username}`);
-
-        setUser({
-            username: username,
-            avatarSrc: ConvertDataToImg(userInfo.data.avatar).src
-        })
     }
 
     return (
