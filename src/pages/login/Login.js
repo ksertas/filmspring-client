@@ -3,10 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../context/UserContext';
 import styles from './Login.module.scss';
-import ConvertDataToImg from '../../utils/ConvertDataToImg';
-import { ax } from '../../api/api';
-import jwt_decode from 'jwt-decode';
-import IsAuthenticated from '../../utils/IsAuthenticated';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Login() {
