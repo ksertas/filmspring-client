@@ -1,15 +1,30 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { UserContext } from '../../context/UserContext';
 import styles from './Login.module.scss';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     document.body.classList.add(styles.background);
 
+    const { login } = useContext(UserContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data);
+        loginUser(data);
+    }
+
+    const loginUser = async (data) => {
+        try {
+            const result = await axios.post("http://localhost:8080/api/users/login", data);
+            login(result.data.jwt);
+            navigate("/profile");
+        } catch (e) {
+            console.log(e.response);
+        }
     }
 
     return (
@@ -21,23 +36,23 @@ export default function Login() {
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
 
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" id="email" {...register("email", {
-                        required: "This field is required.", pattern: {
-                            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                            message: "Invalid email format."
+                    <label htmlFor="username">Username</label>
+                    <input type="text" id="username" {...register("username", {
+                        required: "Username must be between 3 and 32 characters long.", pattern: {
+                            value: /^(?=.{3,32}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+                            message: "Invalid username format."
                         }
                     })} />
-                    {errors.email && <p className={styles.input__error_message}>{errors.email.message}</p>}
+                    {errors.username && <p className={styles.input__error_message}>{errors.username.message}</p>}
 
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" {...register("password", {
+                    <input type="password" id="password" {...register("password", {
                         required: "This field is required."
                     })} />
                     {errors.password && <p className={styles.input__error_message}>{errors.password.message}</p>}
                     <button type="submit" className={styles.login_btn}>Login</button>
                 </form>
             </div>
-        </div>
+        </div >
     )
 }

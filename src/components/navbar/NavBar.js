@@ -2,6 +2,7 @@ import React from 'react'
 import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
 import styles from './NavBar.module.scss';
 import SearchInput from '../input/search/SearchInput';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
     return (
@@ -13,8 +14,8 @@ export default function NavBar() {
                 <div className={styles.nav__right}>
                     <ul>
                         <li><SearchInput /></li>
-                        <li><button className={styles.btn_login}>Log in</button></li>
-                        <li><button className={styles.btn_signup}>Sign up</button></li>
+                        <li><Link to={"/login"}><button className={styles.btn_login}>Log in</button></Link></li>
+                        <li><Link to={"/register"}><button className={styles.btn_signup}>Sign up</button></Link></li>
                     </ul>
                 </div>
             </nav>

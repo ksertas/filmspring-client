@@ -43,7 +43,7 @@
            @include label_base;
         }
         
-        input[type=text], input[type=email] {
+        input[type=text], input[type=password] {
             @include input_base;
         }
         .login_btn {

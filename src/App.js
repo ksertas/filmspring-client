@@ -1,16 +1,42 @@
+import { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Footer from './components/footer/Footer';
+import FooterLoggedIn from './components/footer/FooterLoggedIn';
 import NavBar from './components/navbar/NavBar';
-import Home from './pages/Home';
-import Media from './pages/Media';
+import NavBarLoggedIn from './components/navbar/NavBarLoggedIn';
+import { UserContext } from './context/UserContext';
+import Error from './pages/error/Error';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import Media from './pages/media/Media';
+import Profile from './pages/profile/Profile';
+import ProtectedRoutes from './pages/ProtectedRoutes';
+import Register from './pages/register/Register';
+import Search from './pages/search/Search';
+import Settings from './pages/settings/Settings';
 
 function App() {
+  const { auth } = useContext(UserContext);
+
   return (
     <div className="App">
-      <NavBar />
-      {/* <Home /> */}
-      <Media />
-      <Footer />
+      <Router>
+        {auth.isAuth ? <NavBarLoggedIn /> : <NavBar />}
+        <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/media" element={<Media />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        {auth.isAuth ? <FooterLoggedIn /> : <Footer />}
+      </Router>
     </div>
   );
 }
