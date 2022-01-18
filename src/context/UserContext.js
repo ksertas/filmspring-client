@@ -11,6 +11,7 @@ export default function UserProvider({ children }) {
         localStorage.getItem("token") ? {
             user: {
                 username: jwtDecode(localStorage.getItem("token")).sub,
+                avatarSrc: localStorage.getItem("avatarSrc"),
             },
             isAuth: true,
         } : {}
@@ -26,12 +27,14 @@ export default function UserProvider({ children }) {
             }
         })
 
+        localStorage.setItem("avatarSrc", ConvertDataToImg(results.data.avatar).src);
+
         toggleAuth({
             ...auth,
             user: {
                 username: jwtDecode(token).sub,
                 // Every user will either have a custom or default profile picture
-                avatarSrc: ConvertDataToImg(results.data.avatar).src,
+                avatarSrc: localStorage.getItem("avatarSrc"),
             },
             isAuth: true
         })
