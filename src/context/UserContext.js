@@ -1,20 +1,21 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import ConvertDataToImg from "../utils/ConvertDataToImg";
+import { AuthContext } from "./AuthContext";
 
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
+    const { auth, ToggleAuth } = useContext(AuthContext);
 
-    const [auth, toggleAuth] = useState(
-        localStorage.getItem("token") ? {
+    const [user, setUser] = useState(
+        localStorage.getItem("token") && localStorage.getItem("token").includes(".") ? {
             user: {
                 username: jwtDecode(localStorage.getItem("token")).sub,
                 avatarSrc: localStorage.getItem("avatarSrc"),
-            },
-            isAuth: true,
-        } : {}
+            }
+        } : null
     )
 
     async function login(token) {
@@ -29,32 +30,28 @@ export default function UserProvider({ children }) {
 
         localStorage.setItem("avatarSrc", ConvertDataToImg(results.data.avatar).src);
 
-        toggleAuth({
-            ...auth,
+        setUser({
             user: {
                 username: jwtDecode(token).sub,
                 // Every user will either have a custom or default profile picture
                 avatarSrc: localStorage.getItem("avatarSrc"),
-            },
-            isAuth: true
+            }
         })
+
+        ToggleAuth(true);
 
     }
 
     function logout() {
         console.log("user is logged out");
         localStorage.clear();
-
-        toggleAuth({
-            ...auth,
-            user: {},
-            isAuth: false
-        })
+        setUser(null);
+        ToggleAuth(false);
 
     }
 
     const contextData = {
-        auth: auth,
+        user: user,
         login: login,
         logout: logout,
     };

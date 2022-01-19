@@ -5,6 +5,7 @@ import Footer from './components/footer/Footer';
 import FooterLoggedIn from './components/footer/FooterLoggedIn';
 import NavBar from './components/navbar/NavBar';
 import NavBarLoggedIn from './components/navbar/NavBarLoggedIn';
+import { AuthContext } from './context/AuthContext';
 import { UserContext } from './context/UserContext';
 import Error from './pages/error/Error';
 import Home from './pages/home/Home';
@@ -17,12 +18,12 @@ import Search from './pages/search/Search';
 import Settings from './pages/settings/Settings';
 
 function App() {
-  const { auth } = useContext(UserContext);
+  const { auth } = useContext(AuthContext);
 
   return (
     <div className="App">
       <Router>
-        {auth.isAuth ? <NavBarLoggedIn /> : <NavBar />}
+        {auth ? <NavBarLoggedIn /> : <NavBar />}
         <Routes>
           <Route element={<ProtectedRoutes />}>
             <Route path="/media" element={<Media />} />
@@ -35,7 +36,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        {auth.isAuth ? <FooterLoggedIn /> : <Footer />}
+        {auth ? <FooterLoggedIn /> : <Footer />}
       </Router>
     </div>
   );

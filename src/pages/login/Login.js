@@ -4,26 +4,42 @@ import { useForm } from 'react-hook-form';
 import { UserContext } from '../../context/UserContext';
 import styles from './Login.module.scss';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Login() {
 
     document.body.classList.add(styles.background);
 
     const { login } = useContext(UserContext);
+    const { auth } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const [jwt, setJwt] = useState(null);
+    const [loginStatus, setLoginStatus] = useState(false);
 
     const onSubmit = (data) => {
         loginUser(data);
     }
 
+    useEffect(() => {
+        if (loginStatus === 200) {
+            login(jwt);
+            if (auth) {
+                navigate("/profile");
+            }
+        }
+    }, [jwt, auth]);
+
+
     const loginUser = async (data) => {
         try {
             const result = await axios.post("http://localhost:8080/api/users/login", data);
-            login(result.data.jwt);
-            navigate("/profile");
+            setLoginStatus(result.status);
+            setJwt(result.data.jwt)
+
         } catch (e) {
-            console.log(e.response);
+            console.log(e.response.data.error);
+            setLoginStatus(e.response.status);
         }
     }
 
@@ -35,6 +51,8 @@ export default function Login() {
             </div>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.login_form}>
+
+                    {loginStatus === 403 ? <p className={styles.invalid_credentials}>Incorrect username or password</p> : ''}
 
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" {...register("username", {
