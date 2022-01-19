@@ -32,7 +32,7 @@ nav {
 .profile__button {
     position: relative;
     border: none;
-    outline: none;
+    // outline: none;
     background: none;
     cursor: pointer;
     display: flex;
@@ -75,9 +75,18 @@ nav {
             border-bottom: 1px solid map-get($map: $colors, $key: gray-100);
             width: 100%;
             color: map-get($map: $colors, $key: gray-20);
+
+            a {
+                display: inline-block;
+                width: inherit;
+                color: inherit;
+                text-decoration: none;
+            }
         }
         .list__logout {
             margin-top: 2em;
+            display: inline-block;
+            cursor: pointer;
         }
     }
 }

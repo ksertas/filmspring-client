@@ -28,6 +28,10 @@
         width: 1.5em;
         opacity: 50%;
     }
+    
+    &:focus-within {
+        background-color: map-get($map: $colors, $key: gray-40);
+    }
 }
 
 .search {
@@ -40,6 +44,7 @@
     pointer-events: all;
     &:focus {
         outline: none;
+        background-color: map-get($map: $colors, $key: gray-40);
     }
 }
 

@@ -46,6 +46,11 @@ $colors: (
   border-radius: 4px;
   cursor: pointer;
   outline: none;
+
+  &:focus {
+    outline: 1px solid map-get($map: $colors, $key: gray-20);
+  }
+
 }
 
 @mixin btn_primary {

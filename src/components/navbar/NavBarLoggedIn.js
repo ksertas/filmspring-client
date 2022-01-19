@@ -1,32 +1,31 @@
-import React, { useContext, useState } from 'react'
-import styles from './NavBarLoggedIn.module.scss';
-import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
-import SearchInput from '../input/search/SearchInput';
-import John from '../../assets/img/home/john.png';
+import React, { useContext, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../assets/icon/nav/logo.svg';
 import { UserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import SearchInput from '../input/search/SearchInput';
+import styles from './NavBarLoggedIn.module.scss';
 
 export default function NavBarLoggedIn() {
 
     const [menuHidden, setMenuHidden] = useState(true);
-    const navigate = useNavigate();
     const { user, logout } = useContext(UserContext);
 
     function logUserOut() {
         logout();
-        navigate("/");
+        window.scrollTo(0, 0);
     }
 
     function handleProfileMenu() {
         setMenuHidden(!menuHidden);
+        window.scrollTo(0, 0);
     }
 
     return (
         <>
             <nav className={styles.nav}>
                 <div className={styles.nav__left}>
-                    <Logo className={styles.logo} />
+                    <Link to="/profile"><Logo className={styles.logo} /></Link>
                 </div>
                 <div className={styles.nav__right}>
                     <ul>
@@ -38,12 +37,12 @@ export default function NavBarLoggedIn() {
                             {menuHidden ? '' :
                                 <div className={styles.profile_menu}>
                                     <ul className={styles.menu__list}>
-                                        <li onClick={handleProfileMenu}>Profile</li>
-                                        <li onClick={handleProfileMenu}>Watched films</li>
-                                        <li onClick={handleProfileMenu}>Watched series</li>
-                                        <li onClick={handleProfileMenu}>Favorites</li>
-                                        <li onClick={handleProfileMenu}>Account settings</li>
-                                        <li onClick={logUserOut} className={styles.list__logout}>Log out</li>
+                                        <li onClick={handleProfileMenu}><Link to="/profile">Profile</Link></li>
+                                        <li onClick={handleProfileMenu}><Link to="">Watched films</Link></li>
+                                        <li onClick={handleProfileMenu}><Link to="">Watched series</Link></li>
+                                        <li onClick={handleProfileMenu}><Link to="">Favorites</Link></li>
+                                        <li onClick={handleProfileMenu}><Link to="/settings">Account settings</Link></li>
+                                        <li onClick={logUserOut} className={styles.list__logout}><Link to="/">Log out</Link></li>
                                     </ul>
                                 </div>}
                         </li>

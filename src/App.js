@@ -6,7 +6,6 @@ import FooterLoggedIn from './components/footer/FooterLoggedIn';
 import NavBar from './components/navbar/NavBar';
 import NavBarLoggedIn from './components/navbar/NavBarLoggedIn';
 import { AuthContext } from './context/AuthContext';
-import { UserContext } from './context/UserContext';
 import Error from './pages/error/Error';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';

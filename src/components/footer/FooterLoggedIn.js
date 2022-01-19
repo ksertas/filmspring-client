@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './FooterLoggedIn.module.scss';
 import SearchInput from '../input/search/SearchInput.js';
 import { ReactComponent as Github } from '../../assets/icon/footer/github.svg';
 import { ReactComponent as Novi } from '../../assets/icon/footer/novi.svg';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 
 export default function FooterLoggedIn() {
+
+    const navigate = useNavigate();
+    const { user, logout } = useContext(UserContext);
+
+    function logUserOut() {
+        logout();
+        window.scrollTo(0, 0);
+        navigate("/");
+    }
+
     return (
         <footer className={styles.footer}>
             <div className={styles.footer__search}>
@@ -16,25 +29,23 @@ export default function FooterLoggedIn() {
                     <div>
                         <h4 className={styles.list__heading}>Account</h4>
                         <ul>
-                            <li>Profile</li>
-                            <li>Watched films</li>
-                            <li>Watched series</li>
-                            <li>Account settings</li>
-                            <li>Log out</li>
+                            <li onClick={() => window.scrollTo(0, 0)}><Link to="/profile">Profile</Link></li>
+                            <li onClick={() => window.scrollTo(0, 0)}><Link to="/settings">Account settings</Link></li>
+                            <li onClick={logUserOut}><Link to="/">Log out</Link></li>
                         </ul>
                     </div>
-                    <div>
+                    {/* <div>
                         <h4 className={styles.list__heading}>Policy</h4>
                         <ul>
                             <li>Terms & conditions</li>
                             <li>Privacy</li>
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.logo__container}>
                     <ul>
-                        <li className={styles.logo}><Novi /></li>
-                        <li className={styles.logo}><Github /></li>
+                        <li className={styles.logo}><a href="https://novi.nl" target="_blank" rel="noopener noreferrer"><Novi /></a></li>
+                        <li className={styles.logo}><a href="https://github.com/ksertas" target="_blank" rel="noopener noreferrer"><Github /></a></li>
                     </ul>
                 </div>
             </div>
