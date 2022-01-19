@@ -11,7 +11,7 @@ export default function NavBarLoggedIn() {
 
     const [menuHidden, setMenuHidden] = useState(true);
     const navigate = useNavigate();
-    const { auth, login, logout } = useContext(UserContext);
+    const { user, logout } = useContext(UserContext);
 
     function logUserOut() {
         logout();
@@ -33,8 +33,7 @@ export default function NavBarLoggedIn() {
                         <li><SearchInput /></li>
                         <li className={styles.profile__item}>
                             <button className={styles.profile__button} onClick={handleProfileMenu}>
-                                {console.log(auth)}
-                                <img src={auth.user.avatarSrc} alt="avatar" className={styles.profile__img} /><AiFillCaretDown className={styles.caret} />
+                                <img src={user.avatarSrc} alt="avatar" className={styles.profile__img} /><AiFillCaretDown className={styles.caret} />
                             </button>
                             {menuHidden ? '' :
                                 <div className={styles.profile_menu}>

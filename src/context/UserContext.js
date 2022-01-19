@@ -11,10 +11,8 @@ export default function UserProvider({ children }) {
 
     const [user, setUser] = useState(
         localStorage.getItem("token") && localStorage.getItem("token").includes(".") ? {
-            user: {
-                username: jwtDecode(localStorage.getItem("token")).sub,
-                avatarSrc: localStorage.getItem("avatarSrc"),
-            }
+            username: jwtDecode(localStorage.getItem("token")).sub,
+            avatarSrc: localStorage.getItem("avatarSrc"),
         } : null
     )
 
@@ -31,11 +29,9 @@ export default function UserProvider({ children }) {
         localStorage.setItem("avatarSrc", ConvertDataToImg(results.data.avatar).src);
 
         setUser({
-            user: {
-                username: jwtDecode(token).sub,
-                // Every user will either have a custom or default profile picture
-                avatarSrc: localStorage.getItem("avatarSrc"),
-            }
+            username: jwtDecode(token).sub,
+            // Every user will either have a custom or default profile picture
+            avatarSrc: localStorage.getItem("avatarSrc"),
         })
 
         ToggleAuth(true);
