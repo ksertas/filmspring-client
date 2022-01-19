@@ -1,18 +1,22 @@
 @import '../../App.scss';
 
+.background {
+    background-color: map-get($map: $colors, $key: gray-120);
+}
+
 .search__container {
 
     .search__header {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 4em 0 2em;
+        color: map-get($map: $colors, $key: white-100);
+        font-size: 2rem;
+        padding: 4em 0 1em;
+        
+    }
 
-        h2 {
-            font-size: 2rem;
-            font-weight: 500;    
-            color: map-get($map: $colors, $key: white-100);
-        }
-
+    .result_wrapper {
+        @include carousel;
     }
 }
