@@ -9,13 +9,14 @@ import Modal from 'react-modal';
 import { UserContext } from '../../context/UserContext';
 import { ax } from '../../api/api';
 import axios, { Axios } from 'axios';
+import ConvertDataToImg from '../../utils/ConvertDataToImg';
 
 export default function Settings() {
 
     document.body.classList.add(styles.background);
     Modal.setAppElement("#root");
 
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { register: registerPInfo, handleSubmit: submitPInfo, formState: { errors: errorsPINFO } } = useForm({
@@ -31,7 +32,6 @@ export default function Settings() {
     const { register: registerPrivacy, handleSubmit: submitPrivacy } = useForm();
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploadAvatarStatus, setUploadAvatarStatus] = useState(null);
-    const acceptedAvatarTypes = ["image/jpeg", "image/png"];
 
     const onFileUpload = (e) => {
         setSelectedFile(e.target.files[0]);
@@ -45,7 +45,6 @@ export default function Settings() {
 
     const prepareUploadAvatar = () => {
         if (selectedFile === null) {
-            console.log("No file selected.");
             return;
         }
         else {
@@ -66,8 +65,18 @@ export default function Settings() {
                     'Content-Type': 'multipart/form-data',
                 }
             });
+            let avatar = res.data;
+            console.log(avatar);
+            localStorage.setItem("avatarSrc", `data:${avatar.type};base64,${avatar.data}`);
+            setUser({
+                ...user,
+                avatarSrc: localStorage.getItem("avatarSrc")
+            })
+
             setUploadAvatarStatus(res.status);
         } catch (e) {
+            console.log(e);
+
             setUploadAvatarStatus("error");
         }
     }

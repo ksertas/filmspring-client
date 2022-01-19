@@ -48,6 +48,7 @@ export default function UserProvider({ children }) {
 
     const contextData = {
         user: user,
+        setUser: setUser,
         login: login,
         logout: logout,
     };
