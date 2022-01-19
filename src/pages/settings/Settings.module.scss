@@ -73,18 +73,30 @@
             display: flex;
             flex-direction: column;
         
+            .avatar_fail {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+                padding: 0.5em 1em;
+                font-weight: 500;
+                color: map-get($map: $colors, $key: white-100);
+                background-color: map-get($map: $colors, $key: error-100);
+                }
+
             .avatar__top {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 2em;
+                // gap: 2em;
                 height: 60%;
                 background-color: map-get($map: $colors, $key: gray-120);
     
                 p {
                     font-size: 1.2rem;
                     font-weight: 400;
+                    margin-bottom: 1em;
                 }
     
                 img {

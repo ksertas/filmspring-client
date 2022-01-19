@@ -1,17 +1,21 @@
 // Username, Bio, Email inputs will have default values of current user's from API.
 
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styles from './Settings.module.scss';
 import List from '../../components/Carousel/List.js';
 import { useForm } from 'react-hook-form';
 import John from '../../assets/img/home/john.png';
 import Modal from 'react-modal';
+import { UserContext } from '../../context/UserContext';
+import { ax } from '../../api/api';
+import axios, { Axios } from 'axios';
 
 export default function Settings() {
 
     document.body.classList.add(styles.background);
     Modal.setAppElement("#root");
 
+    const { user } = useContext(UserContext);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { register: registerPInfo, handleSubmit: submitPInfo, formState: { errors: errorsPINFO } } = useForm({
@@ -20,12 +24,53 @@ export default function Settings() {
             "lastName": "Doe",
         }
     });
-
     const { handleSubmit: submitAvatar } = useForm();
     const { register: registerEmail, handleSubmit: submitEmail, formState: { errors: errorsEmail } } = useForm();
     const { register: registerPassword, handleSubmit: submitPassword, formState: { errors: errorsPassword } } = useForm();
     const { register: registerDeletion, handleSubmit: submitDeletion, formState: { errors: errorsDeletion } } = useForm();
     const { register: registerPrivacy, handleSubmit: submitPrivacy } = useForm();
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [uploadAvatarStatus, setUploadAvatarStatus] = useState(null);
+    const acceptedAvatarTypes = ["image/jpeg", "image/png"];
+
+    const onFileUpload = (e) => {
+        setSelectedFile(e.target.files[0]);
+    }
+
+    useEffect(() => {
+        prepareUploadAvatar()
+
+    }, [selectedFile]);
+
+
+    const prepareUploadAvatar = () => {
+        if (selectedFile === null) {
+            console.log("No file selected.");
+            return;
+        }
+        else {
+            uploadAvatar();
+        }
+    }
+
+    const uploadAvatar = async () => {
+        const formData = new FormData();
+        formData.append(
+            "file",
+            selectedFile
+        )
+
+        try {
+            let res = await ax.put(`/avatars/users/${user.username}?file`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
+            setUploadAvatarStatus(res.status);
+        } catch (e) {
+            setUploadAvatarStatus("error");
+        }
+    }
 
     const onSubmit = (data) => {
         console.log(data);
@@ -42,15 +87,6 @@ export default function Settings() {
     }
 
     return (
-
-        // <div>
-        //     <header>
-        //         <h4></h4>
-        //         <button></button>
-        //     </header>
-        //     <div></div>
-        // </div>
-
         <div className={styles.settings__container}>
             <div className={styles.header}>
                 <h2>Account settings</h2>
@@ -90,12 +126,13 @@ export default function Settings() {
                     </form>
                     <form onSubmit={submitAvatar(onSubmit)} className={styles.profile_avatar}>
                         <div className={styles.avatar__top}>
+                            {uploadAvatarStatus === "error" ? <p className={styles.avatar_fail}>Incorrect file size or format</p> : ''}
                             <p>Change profile picture</p>
-                            <img src={John} alt="" />
+                            <img src={user.avatarSrc} alt="current avatar" />
                         </div>
                         <div className={styles.avatar__bottom}>
                             <label htmlFor="avatar" className={styles.upload_btn}>Choose image to upload</label>
-                            <input type="file" name="avatar" id="avatar" accept=".png, .jpeg, .jpg" onChange={() => console.log("submitted")} />
+                            <input type="file" name="avatar" id="avatar" accept=".png, .jpeg, .jpg" onChange={onFileUpload} />
                             <p className={styles.file_info}>File types: .png, .jpeg. Max file size: 5MB</p>
                         </div>
                     </form>
