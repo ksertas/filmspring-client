@@ -1,1 +1,22 @@
 @import '../../App.scss';
+
+.error__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    height: 70vh;
+    color: map-get($map: $colors, $key: warning-100);
+    background-color: map-get($map: $colors, $key: gray-120);
+
+    h1 {
+        font-weight: 600;
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-weight: 400;
+        font-size: 1.5rem;
+    }
+}
