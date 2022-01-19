@@ -42,12 +42,24 @@ export default function Settings() {
     }
 
     return (
+
+        // <div>
+        //     <header>
+        //         <h4></h4>
+        //         <button></button>
+        //     </header>
+        //     <div></div>
+        // </div>
+
         <div className={styles.settings__container}>
             <div className={styles.header}>
                 <h2>Account settings</h2>
             </div>
-            <List title="Profile settings">
-                <div className={styles.profile__container}>
+            <div className={styles.profile__container}>
+                <header>
+                    <h4>Profile settings</h4>
+                </header>
+                <div className={styles.profile_settings_wrapper}>
                     <form onSubmit={submitPInfo(onSubmit)} className={styles.profile_personal}>
 
                         <label htmlFor="first_name">First name</label>
@@ -76,7 +88,6 @@ export default function Settings() {
 
                         <button type="submit" className={styles.save_btn}>Save</button>
                     </form>
-
                     <form onSubmit={submitAvatar(onSubmit)} className={styles.profile_avatar}>
                         <div className={styles.avatar__top}>
                             <p>Change profile picture</p>
@@ -89,9 +100,12 @@ export default function Settings() {
                         </div>
                     </form>
                 </div>
-            </List>
-            <List title="Account settings">
-                <div className={styles.account__container}>
+            </div>
+            <div className={styles.account__container}>
+                <header>
+                    <h4>Account settings</h4>
+                </header>
+                <div className={styles.account_settings_wrapper}>
                     <form onSubmit={submitEmail(onSubmit)} className={styles.account_email}>
 
                         <h4>Change email</h4>
@@ -161,9 +175,12 @@ export default function Settings() {
                         </Modal>
                     </form>
                 </div>
-            </List>
-            <List title="Privacy settings">
-                <div className={styles.privacy__container}>
+            </div>
+            <div className={styles.privacy__container}>
+                <header>
+                    <h4>Privacy settings</h4>
+                </header>
+                <div className={styles.privacy_settings_wrapper}>
                     <form onSubmit={submitPrivacy(onSubmit)} className={styles.privacy_media}>
 
                         <div className={styles.options__container}>
@@ -171,10 +188,9 @@ export default function Settings() {
                             <input type="checkbox" name="hideMedia" id="hideMedia" {...registerPrivacy("hideMedia")} />
                         </div>
                         <button type="submit" className={styles.save_btn}>Save</button>
-
                     </form>
                 </div>
-            </List>
+            </div>
         </div>
     )
 }

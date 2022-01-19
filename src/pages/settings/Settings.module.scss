@@ -34,10 +34,17 @@
     }
     
     .profile__container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin: 2em 5em;
+        @include carousel;
+        
+        .profile_settings_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            gap: 2em;
+            padding: 2em 4em;
+            margin: 0 auto;
+        }
     
         .profile_personal {
             display: flex;
@@ -113,11 +120,17 @@
     }
     
     .account__container {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        padding: 1em 4em;
-        color: map-get($map: $colors, $key: white-100);
+        @include carousel;
+        
+        .account_settings_wrapper {
+            color: map-get($map: $colors, $key: white-100);
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 4em;
+            padding: 2em 4em;
+        }
+        
         h4 {
             font-weight: 500;
             font-size: 1.35rem;
@@ -151,6 +164,8 @@
     }
     
     .privacy__container {
+        @include carousel;
+
         .privacy_media {
             color: map-get($map: $colors, $key: white-100);
             display: flex;
