@@ -1,7 +1,7 @@
 @import '../../App.scss';
 
 nav {
-    background-color: map-get($map: $colors, $key: gray-120);
+    background-color: map-get($map: $colors, $key: gray-140);
     width: 100%;
     display: flex;
     padding: 0.75em 6em;
