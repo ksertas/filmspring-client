@@ -10,7 +10,7 @@ export default function Login() {
 
     document.body.classList.add(styles.background);
 
-    const { login } = useContext(UserContext);
+    const { user, login } = useContext(UserContext);
     const { auth } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Login() {
         if (loginStatus === 200) {
             login(jwt);
             if (auth) {
-                navigate("/profile");
+                navigate(`/profile/${user.username}`);
             }
         }
     }, [jwt, auth]);
