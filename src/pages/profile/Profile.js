@@ -1,26 +1,46 @@
-import React from 'react'
-import styles from './Profile.module.scss';
 import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-import ProfileHeader from '../../components/profile_header/ProfileHeader'
+import React, { useContext, useEffect, useState } from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import ProfileHeaderGroups from '../../components/profile_header/ProfileHeaderGroups';
-import CreateGroup from '../../components/Carousel/CreateGroup';
-import YourGroups from '../../components/Carousel/YourGroups';
-import GroupUserList from '../../components/Carousel/GroupUserList';
+import { useParams } from 'react-router-dom';
+import { ax } from '../../api/api';
 import Mountain from '../../assets/img/Media/mountain.png';
 import Tiger from '../../assets/img/Media/tiger.png';
+import CreateGroup from '../../components/Carousel/CreateGroup';
+import GroupUserList from '../../components/Carousel/GroupUserList';
 import MediaTile from '../../components/Carousel/tiles/MediaTile';
+import YourGroups from '../../components/Carousel/YourGroups';
+import ProfileHeader from '../../components/profile_header/ProfileHeader';
+import { UserContext } from '../../context/UserContext';
+import styles from './Profile.module.scss';
 
 export default function Profile() {
 
     document.body.classList.add(styles.background);
 
-    return (
-        <div className={styles.profile__container}>
-            <ProfileHeader />
-            {/* <ProfileHeaderGroups /> */}
+    const { user } = useContext(UserContext);
+    const { username } = useParams();
 
+    const [isCurrentUser, setIsCurrentUser] = useState(user.username === username);
+    const [profileDetails, setProfileDetails] = useState();
+
+    useEffect(() => {
+        async function fetchUser() {
+            try {
+                let userInfo = await ax.get(`/users/${username}`);
+                setProfileDetails(userInfo.data);
+                console.log(profileDetails);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchUser();
+    }, []);
+
+    return (profileDetails ?
+        <div className={styles.profile__container}>
+            {profileDetails ? <ProfileHeader headerData={profileDetails} isCurrent={isCurrentUser} /> : ''}
             <div className={styles.profile__carousel}>
                 <header>
                     <h4>Recently watched</h4>
@@ -85,6 +105,6 @@ export default function Profile() {
             <YourGroups />
             <GroupUserList />
             <CreateGroup />
-        </div>
+        </div> : <h1>Loading...</h1>
     )
 }

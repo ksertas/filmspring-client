@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoutes />}>
             <Route path="/media" element={<Media />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:username" element={<Profile />} />
             <Route path="/search" element={<Search />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
