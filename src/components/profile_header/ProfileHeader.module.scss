@@ -31,6 +31,9 @@
 
 .person__img {
     width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .person__full_name {
@@ -63,6 +66,13 @@
     } p {
         font-size: 1.15rem;
     }
+}
+
+.person__media_private {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: map-get($map: $colors, $key: warning-100);
+    padding: 1.5em 0;
 }
 
 .profile__nav {
