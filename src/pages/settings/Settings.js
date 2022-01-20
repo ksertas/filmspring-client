@@ -135,11 +135,11 @@ export default function Settings() {
                     </form>
                     <form onSubmit={submitAvatar(onSubmit)} className={styles.profile_avatar}>
                         <div className={styles.avatar__top}>
-                            {uploadAvatarStatus === "error" ? <p className={styles.avatar_fail}>Incorrect file size or format</p> : ''}
                             <p>Change profile picture</p>
                             <img src={user.avatarSrc} alt="current avatar" />
                         </div>
                         <div className={styles.avatar__bottom}>
+                            {uploadAvatarStatus === "error" ? <p className={styles.avatar_fail}>Incorrect file size or format</p> : ''}
                             <label htmlFor="avatar" className={styles.upload_btn}>Choose image to upload</label>
                             <input type="file" name="avatar" id="avatar" accept=".png, .jpeg, .jpg" onChange={onFileUpload} />
                             <p className={styles.file_info}>File types: .png, .jpeg. Max file size: 5MB</p>

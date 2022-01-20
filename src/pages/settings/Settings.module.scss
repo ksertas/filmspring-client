@@ -89,7 +89,6 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                // gap: 2em;
                 height: 60%;
                 background-color: map-get($map: $colors, $key: gray-120);
     
@@ -101,6 +100,9 @@
     
                 img {
                     width: 10em;
+                    height: 10em;
+                    object-fit: cover;
+                    border-radius: 50%;
                 }
             }
             
