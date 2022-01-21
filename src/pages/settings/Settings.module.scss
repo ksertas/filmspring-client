@@ -183,23 +183,24 @@
                 @include btn_danger;
                 width: fit-content;
             }
-        }
+        }   
     }
-    
-    .modal__container {
+}
+
+.modal__container {
         padding: 1em 1em;
-    
+
         .modal__header {
             color: #ff6868;
             font-weight: 500;
             font-size: 1.5rem;
             padding: 0 0 0.5em;
         }
-    
+
         .modal__description {
             color: #f79e43;
         }
-    
+
         .modal__btn_container {
             display: flex;
             flex-wrap: wrap;
@@ -210,14 +211,10 @@
                 @include btn;
                 @include btn_neutral_ghost;
             }
-    
+
             .modal__delete_btn {
                 @include btn;
                 @include btn_danger;
             }
         }
     }
-
-}
-
-
