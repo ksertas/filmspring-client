@@ -3,6 +3,12 @@
 .sidebar__container {
     display: flex;
     flex-direction: column;
+
+    img {
+        width: 21em;
+        height: 33em;
+        object-fit: cover;
+    }
 }
 
 .sidebar__buttons {

@@ -1,16 +1,16 @@
 import React from 'react'
 import styles from './Cast.module.scss';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-export default function Cast({ actor }) {
+export default function Cast({ data }) {
     return (
-        <div className={styles.cast_container}>
-            <span className={styles.actor_tile}>Lee jung-jae</span>
-            <span className={styles.actor_tile}>Park Hae-soo</span>
-            <span className={styles.actor_tile}>Jung Ho-yeon</span>
-            <span className={styles.actor_tile}>Oh Yeong-su</span>
-            <span className={styles.actor_tile}>Heo Sung-tae</span>
-            <span className={styles.actor_tile}>Anupam Tripathi</span>
-            <span className={styles.actor_tile}>Kim Joo-ryoung</span>
-        </div>
+        <>
+            {data ? <div className={styles.cast_container}>
+                {data.actors.map((actor, i) => {
+                    return <span className={styles.actor_tile} key={i}>{`${actor.firstName} ${actor.lastName}`}</span>
+                })}
+            </div> : <Skeleton count={3} />}
+        </>
     )
 }
