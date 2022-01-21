@@ -29,7 +29,6 @@ export default function Settings() {
     const { register: registerEmail, handleSubmit: submitEmail, formState: { errors: errorsEmail } } = useForm();
     const { register: registerPassword, handleSubmit: submitPassword, formState: { errors: errorsPassword } } = useForm();
     const { register: registerDeletion, handleSubmit: submitDeletion, formState: { errors: errorsDeletion } } = useForm();
-    const { register: registerPrivacy, handleSubmit: submitPrivacy } = useForm();
     const [selectedFile, setSelectedFile] = useState(null);
     const [uploadAvatarStatus, setUploadAvatarStatus] = useState(null);
 
@@ -110,7 +109,7 @@ export default function Settings() {
                         <label htmlFor="first_name">First name</label>
                         <input type="text" id="first_name" {...registerPInfo("firstName", {
                             minLength: { value: 2, message: "Must be at least 2 characters long." },
-                            required: false, pattern: {
+                            required: "This field is required", pattern: {
                                 value: /^[a-z ,.'-]+$/i,
                                 message: "Name contains illegal characters"
                             }
@@ -130,6 +129,11 @@ export default function Settings() {
                         <label htmlFor="new_bio">About yourself</label>
                         <textarea maxLength={150} type="text" id="new_bio" {...registerPInfo("bio", { maxLength: { value: 150, message: "Bio must not exceed 150 characters" } })}></textarea>
                         {errorsPINFO.bio && <p className={styles.input__error_message}>{errorsPINFO.bio.message}</p>}
+
+                        <div className={styles.options__container}>
+                            <label htmlFor="hideMedia">Make my films and series lists private</label>
+                            <input type="checkbox" name="hideMedia" id="hideMedia" {...registerPInfo("hideMediaPreference")} />
+                        </div>
 
                         <button type="submit" className={styles.save_btn}>Save</button>
                     </form>
@@ -219,21 +223,6 @@ export default function Settings() {
                                 </div>
                             </div>
                         </Modal>
-                    </form>
-                </div>
-            </div>
-            <div className={styles.privacy__container}>
-                <header>
-                    <h4>Privacy settings</h4>
-                </header>
-                <div className={styles.privacy_settings_wrapper}>
-                    <form onSubmit={submitPrivacy(onSubmit)} className={styles.privacy_media}>
-
-                        <div className={styles.options__container}>
-                            <label htmlFor="hideMedia">Make my films and series lists private</label>
-                            <input type="checkbox" name="hideMedia" id="hideMedia" {...registerPrivacy("hideMedia")} />
-                        </div>
-                        <button type="submit" className={styles.save_btn}>Save</button>
                     </form>
                 </div>
             </div>
