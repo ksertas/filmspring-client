@@ -39,7 +39,6 @@ export default function UserProvider({ children }) {
     }
 
     function logout() {
-        console.log("user is logged out");
         localStorage.clear();
         setUser(null);
         ToggleAuth(false);
