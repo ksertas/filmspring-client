@@ -7,6 +7,7 @@ import { ax } from '../../api/api';
 import CreateGroup from '../../components/Carousel/CreateGroup';
 import GroupUserList from '../../components/Carousel/GroupUserList';
 import TileContainer from '../../components/Carousel/TileContainer';
+import GroupTile from '../../components/Carousel/tiles/GroupTile';
 import MediaTile from '../../components/Carousel/tiles/MediaTile';
 import YourGroups from '../../components/Carousel/YourGroups';
 import ProfileHeader from '../../components/profile_header/ProfileHeader';
@@ -26,6 +27,7 @@ export default function Profile() {
     let plannedFilms = [];
     let plannedSeries = [];
     let favorites = [];
+    let groupsUserIsIn = [];
 
     useEffect(() => {
         async function fetchUser() {
@@ -70,6 +72,12 @@ export default function Profile() {
                 favorites.push(profileDetails.favorites[i]);
             }
         }
+
+        if (profileDetails.groupsUserIsIn) {
+            for (let i = 0; i < profileDetails.groupsUserIsIn.length; i++) {
+                groupsUserIsIn.push(profileDetails.groupsUserIsIn[i]);
+            }
+        }
     }
 
     return (
@@ -106,9 +114,18 @@ export default function Profile() {
                 </div>
                 :
                 <Skeleton height={200} />}
-            <YourGroups />
-            <GroupUserList />
-            <CreateGroup />
+
+            {profileDetails && isCurrentUser ?
+                <div>
+                    {profileDetails.groupsUserIsIn && profileDetails.groupsUserIsIn.length > 0 ?
+                        <TileContainer title="Your Groups" linkTo="#">
+                            {groupsUserIsIn.map((group, i) => {
+                                return <li key={`g ${i}`}><GroupTile data={group} /></li>
+                            })}
+                        </TileContainer>
+                        :
+                        <CreateGroup />}
+                </div> : ''}
         </div>
     )
 }

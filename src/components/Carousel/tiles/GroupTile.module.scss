@@ -7,7 +7,11 @@
     padding: 2em 0;
 }
 
-.grouptile__img {}
+.grouptile__img {
+    width: 10em;
+    height: 16em;
+    object-fit: contain;
+}
 
 .grouptile__name {
     text-align: center;
