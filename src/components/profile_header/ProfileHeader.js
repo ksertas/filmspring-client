@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './ProfileHeader.module.scss';
 import { BsFillPencilFill } from 'react-icons/bs';
-import Jake from '../../assets/img/home/jake.png';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
 
 export default function ProfileHeader({ headerData, isCurrent }) {
@@ -11,10 +10,10 @@ export default function ProfileHeader({ headerData, isCurrent }) {
                 {isCurrent ? <button className={styles.header__edit_profile}><BsFillPencilFill />Edit profile</button> : ''}
             </div>
             <div className={styles.header__person}>
-                <img src={ConvertDataToImg(headerData.avatar).src} alt="" className={styles.person__img} />
-                <h3 className={styles.person__full_name}>Jake Himmerman</h3>
+                <img src={ConvertDataToImg(headerData.avatar).src} alt={headerData.username} className={styles.person__img} />
+                <h3 className={styles.person__full_name}>{headerData.firstName} {headerData.lastName} </h3>
                 <h4 className={styles.person__username}>@{headerData.username}</h4>
-                <p className={styles.person__bio}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae, laudantium tempore! Consequatur, fuga dolores deserunt, repellat odit esse libero voluptatibus quod iusto neque eveniet, enim fugiat. Magni sapiente culpa neque.</p>
+                <p className={styles.person__bio}>{headerData.bio}</p>
             </div>
             {headerData.mediaHidden ?
                 <p className={styles.person__media_private}>{headerData.username}'s films and series lists are private.</p>
