@@ -16,7 +16,7 @@
     justify-content: flex-end;
     button {
         @include btn;
-        @include btn_neutral_ghost;
+        @include btn_primary;
     }
 }
 
@@ -29,7 +29,10 @@
 }
 
 .group__img {
-    width: 12em;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .group__name {
