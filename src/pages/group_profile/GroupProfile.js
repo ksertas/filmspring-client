@@ -7,18 +7,22 @@ import ProfileHeaderGroups from '../../components/profile_header/ProfileHeaderGr
 import { UserContext } from '../../context/UserContext';
 import Skeleton from 'react-loading-skeleton';
 import TileContainer from '../../components/Carousel/TileContainer';
+import GroupUserList from '../../components/Carousel/GroupUserList';
+import { AiOutlinePlus } from 'react-icons/ai';
+import UserListTile from '../../components/Carousel/tiles/UserListTile';
 
 export default function GroupProfile() {
 
     document.body.classList.add(styles.background);
 
     const { user } = useContext(UserContext);
-    const [isGroupOwner, setGroupOwner] = useState();
     const { id } = useParams();
     const [groupDetails, setGroupDetails] = useState();
     const navigate = useNavigate();
+    let isGroupOwner = false;
     let plannedFilms = [];
     let plannedSeries = [];
+    let usersInGroup = [];
 
     useEffect(() => {
 
@@ -38,8 +42,12 @@ export default function GroupProfile() {
         fetchGroup();
     }, []);
 
+
     if (groupDetails) {
-        console.log(groupDetails);
+        if (user.username === groupDetails.groupOwnerName) {
+            isGroupOwner = true;
+        }
+
         if (groupDetails.plannedFilms) {
             for (let i = 0; i < groupDetails.plannedFilms.length; i++) {
                 plannedFilms.push(groupDetails.plannedFilms[i]);
@@ -50,11 +58,15 @@ export default function GroupProfile() {
                 plannedSeries.push(groupDetails.plannedSeries[i]);
             }
         }
+
+        for (let i = 0; i < groupDetails.usersInGroup.length; i++) {
+            usersInGroup.push(groupDetails.usersInGroup[i]);
+        }
     }
 
     return (
         <div className={styles.group_profile__container}>
-            {groupDetails ? <ProfileHeaderGroups data={groupDetails} isGroupOwner={true} /> : <Skeleton height={500} />}
+            {groupDetails ? <ProfileHeaderGroups data={groupDetails} isGroupOwner={isGroupOwner} /> : <Skeleton height={500} />}
             {groupDetails ?
                 <div>
                     <TileContainer title="Planned Films" linkTo="#" key="pf">
@@ -67,9 +79,25 @@ export default function GroupProfile() {
                             return <li key={`ps ${i}`}><MediaTile media={series} type="series" /></li>
                         })}
                     </TileContainer>
+
+                    <div className={styles.user_list__container}>
+                        <header>
+                            <h4>Group Members</h4>
+                            <div>
+                                <button><AiOutlinePlus />Invite user to group</button>
+                            </div>
+                        </header>
+                        <div>
+                            {usersInGroup.map((user, i) => {
+                                usersInGroup.sort();
+                                return <li key={`u ${i}`}><UserListTile groupData={groupDetails} userData={user} isGroupOwner={isGroupOwner} /></li>
+                            })}
+                        </div>
+                    </div>
                 </div>
                 :
                 <Skeleton height={200} />}
+
         </div>
     )
 }

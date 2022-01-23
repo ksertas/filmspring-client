@@ -3,3 +3,7 @@
 .background {
     background-color: map-get($map: $colors, $key: gray-120);
 }
+
+.user_list__container {
+    @include carousel;
+}
