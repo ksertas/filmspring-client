@@ -24,7 +24,8 @@ export default function Profile() {
     let watchedSeries = [];
     let plannedFilms = [];
     let plannedSeries = [];
-    let favorites = [];
+    let favoriteFilms = [];
+    let favoriteSeries = [];
     let groupsUserIsIn = [];
 
     useEffect(() => {
@@ -66,9 +67,14 @@ export default function Profile() {
             }
         }
 
-        if (profileDetails.favorites) {
-            for (let i = 0; i < profileDetails.favorites.length; i++) {
-                favorites.push(profileDetails.favorites[i]);
+        if (profileDetails.favoriteFilms) {
+            for (let i = 0; i < profileDetails.favoriteFilms.length; i++) {
+                favoriteFilms.push(profileDetails.favoriteFilms[i]);
+            }
+        }
+        if (profileDetails.favoriteSeries) {
+            for (let i = 0; i < profileDetails.favoriteSeries.length; i++) {
+                favoriteSeries.push(profileDetails.favoriteSeries[i]);
             }
         }
 
@@ -96,7 +102,7 @@ export default function Profile() {
                     </TileContainer>
                     <TileContainer title="Planned Films" linkTo="#" key="pf">
                         {plannedFilms.map((film, i) => {
-                            return <li key={`pf ${i}`}><MediaTile data={film} type="films" /></li>
+                            return <li key={`pf ${i}`}><MediaTile media={film} type="films" /></li>
                         })}
                     </TileContainer>
                     <TileContainer title="Planned Series" linkTo="#" key="ps">
@@ -104,10 +110,14 @@ export default function Profile() {
                             return <li key={`ws ${i}`}><MediaTile media={series} type="series" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Favorite Films and Series" linkTo="#" key="ffas">
-                        {favorites.map((favorites, i) => {
-                            console.log(`ffas ${i}`);
-                            return <li key={`ffas ${i}`}><MediaTile data={favorites} type="" /></li>
+                    <TileContainer title="Favorite Films" linkTo="#" key="ff">
+                        {favoriteFilms.map((film, i) => {
+                            return <li key={`ff ${i}`}><MediaTile media={film} type="films" /></li>
+                        })}
+                    </TileContainer>
+                    <TileContainer title="Favorite Series" linkTo="#" key="ffs">
+                        {favoriteSeries.map((series, i) => {
+                            return <li key={`fs ${i}`}><MediaTile media={series} type="series" /></li>
                         })}
                     </TileContainer>
                 </div>
