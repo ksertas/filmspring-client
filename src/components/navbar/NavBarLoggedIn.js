@@ -37,7 +37,7 @@ export default function NavBarLoggedIn() {
                             {menuHidden ? '' :
                                 <div className={styles.profile_menu}>
                                     <ul className={styles.menu__list}>
-                                        <li onClick={handleProfileMenu}><Link to="/profile">Profile</Link></li>
+                                        <li onClick={handleProfileMenu}><Link to={`/profile/${user.username}`}>Profile</Link></li>
                                         <li onClick={handleProfileMenu}><Link to="">Watched films</Link></li>
                                         <li onClick={handleProfileMenu}><Link to="">Watched series</Link></li>
                                         <li onClick={handleProfileMenu}><Link to="">Favorites</Link></li>

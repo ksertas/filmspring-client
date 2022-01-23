@@ -24,7 +24,7 @@ export default function Login() {
     useEffect(() => {
         if (loginStatus === 200) {
             login(jwt);
-            if (auth) {
+            if (auth && jwt) {
                 navigate(`/profile/${user.username}`);
             }
         }

@@ -42,7 +42,17 @@ export default function UserProvider({ children }) {
         localStorage.clear();
         setUser(null);
         ToggleAuth(false);
+        sendLogoutReq();
 
+    }
+
+    async function sendLogoutReq() {
+        try {
+            let res = await axios.post("http://localhost:8080/logout");
+            console.log(res);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const contextData = {
