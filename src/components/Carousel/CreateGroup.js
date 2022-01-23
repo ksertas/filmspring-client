@@ -4,28 +4,34 @@ import Subheader from '../media/Subheader.js';
 import { useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 import { AiOutlinePlus, AiOutlineArrowRight } from 'react-icons/ai';
+import { ax } from '../../api/api';
 
-export default function CreateGroup() {
+export default function CreateGroup({ containerTitle, ctaTitle }) {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
-        setModalIsOpen(false);
+    const onSubmit = async (data) => {
+        try {
+            let result = await ax.post(`/groups`, data);
+            setModalIsOpen(false);
+            window.location.reload();
+        } catch (e) {
+            console.log(e);
+        }
     }
     Modal.setAppElement("#root");
 
     return (
         <div className={styles.group__container}>
             <header className={styles.title}>
-                <h4>Your groups</h4>
+                {containerTitle ? <h4>{containerTitle}</h4> : <h4>Your groups</h4>}
                 <div>
                     <button className={styles.header__button} onClick={() => setModalIsOpen(!modalIsOpen)}><AiOutlinePlus />Create group</button>
                 </div>
             </header>
             <div className={styles.content__container}>
-                <p className={styles.content__title}>Create your first group!</p>
+                <p className={styles.content__title}>{ctaTitle}</p>
                 <button className={styles.content__btn} onClick={() => setModalIsOpen(!modalIsOpen)}><AiOutlinePlus />Create your group</button>
                 <Modal
                     isOpen={modalIsOpen}
@@ -51,7 +57,7 @@ export default function CreateGroup() {
                         <input type="text" name="groupName" id="groupName" {...register("groupName", {
                             required: "This field is required.",
                             pattern: {
-                                value: /^(?=.{3,32}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+                                value: /^(?=.{4,32}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
                                 message: "Invalid name format."
                             }
                         })} />

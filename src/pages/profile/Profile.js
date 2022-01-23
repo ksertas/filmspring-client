@@ -5,11 +5,9 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { useParams } from 'react-router-dom';
 import { ax } from '../../api/api';
 import CreateGroup from '../../components/Carousel/CreateGroup';
-import GroupUserList from '../../components/Carousel/GroupUserList';
 import TileContainer from '../../components/Carousel/TileContainer';
 import GroupTile from '../../components/Carousel/tiles/GroupTile';
 import MediaTile from '../../components/Carousel/tiles/MediaTile';
-import YourGroups from '../../components/Carousel/YourGroups';
 import ProfileHeader from '../../components/profile_header/ProfileHeader';
 import { UserContext } from '../../context/UserContext';
 import styles from './Profile.module.scss';
@@ -38,6 +36,7 @@ export default function Profile() {
                 console.log(error);
             }
         }
+
         fetchUser();
     }, []);
 
@@ -118,13 +117,16 @@ export default function Profile() {
             {profileDetails && isCurrentUser ?
                 <div>
                     {profileDetails.groupsUserIsIn && profileDetails.groupsUserIsIn.length > 0 ?
-                        <TileContainer title="Your Groups" linkTo="#">
-                            {groupsUserIsIn.map((group, i) => {
-                                return <li key={`g ${i}`}><GroupTile data={group} /></li>
-                            })}
-                        </TileContainer>
+                        <>
+                            <TileContainer title="Your Groups" linkTo="#">
+                                {groupsUserIsIn.map((group, i) => {
+                                    return <li key={`g ${i}`}><GroupTile data={group} /></li>
+                                })}
+                            </TileContainer>
+                            <CreateGroup containerTitle="Create group" ctaTitle="Create another group" />
+                        </>
                         :
-                        <CreateGroup />}
+                        <CreateGroup containerTitle="No groups yet" ctaTitle="Create your first group!" />}
                 </div> : ''}
         </div>
     )
