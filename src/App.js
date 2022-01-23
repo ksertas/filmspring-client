@@ -7,6 +7,7 @@ import NavBar from './components/navbar/NavBar';
 import NavBarLoggedIn from './components/navbar/NavBarLoggedIn';
 import { AuthContext } from './context/AuthContext';
 import Error from './pages/error/Error';
+import GroupProfile from './pages/group_profile/GroupProfile';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Media from './pages/media/Media';
@@ -27,6 +28,7 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path="/media" element={<Media />} />
             <Route path="/profile/:username" element={<Profile />} />
+            <Route path="/group/:id" element={<GroupProfile />} />
             <Route path="/search" element={<Search />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
