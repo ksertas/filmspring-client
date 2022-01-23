@@ -29,18 +29,11 @@ export default function FooterLoggedIn() {
                     <div>
                         <h4 className={styles.list__heading}>Account</h4>
                         <ul>
-                            <li onClick={() => window.scrollTo(0, 0)}><Link to="/profile">Profile</Link></li>
+                            <li onClick={() => window.scrollTo(0, 0)}><Link to={`/profile/${user.username}`}>Profile</Link></li>
                             <li onClick={() => window.scrollTo(0, 0)}><Link to="/settings">Account settings</Link></li>
                             <li onClick={logUserOut}><Link to="/">Log out</Link></li>
                         </ul>
                     </div>
-                    {/* <div>
-                        <h4 className={styles.list__heading}>Policy</h4>
-                        <ul>
-                            <li>Terms & conditions</li>
-                            <li>Privacy</li>
-                        </ul>
-                    </div> */}
                 </div>
                 <div className={styles.logo__container}>
                     <ul>
