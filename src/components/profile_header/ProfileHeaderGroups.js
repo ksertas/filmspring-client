@@ -1,9 +1,8 @@
-import React from 'react'
-import styles from './ProfileHeaderGroups.module.scss';
+import React from 'react';
 import { BsFillPencilFill } from 'react-icons/bs';
-import Jake from '../../assets/img/home/jake.png';
 import Skeleton from 'react-loading-skeleton';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
+import styles from './ProfileHeaderGroups.module.scss';
 
 export default function ProfileHeaderGroups({ data, isGroupOwner }) {
     return (
@@ -29,8 +28,7 @@ export default function ProfileHeaderGroups({ data, isGroupOwner }) {
             </div>
             <div className={styles.group__nav}>
                 <ul>
-                    <li>Overview</li>
-                    <li>Members</li>
+                    <li className={styles.selected}>Overview</li>
                 </ul>
             </div>
         </div>

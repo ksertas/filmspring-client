@@ -37,28 +37,18 @@ export default function ProfileHeader({ headerData, isCurrent }) {
                     </div>
                 </div>}
             <div className={styles.profile__nav}>
+                {/* TODO: add more navlinks to separate profile contents for easier navigation */}
                 {isCurrent ?
                     <ul>
-                        <li>Overview</li>
-                        <li>Watched Films</li>
-                        <li>Watched Series</li>
-                        <li>Planned Films</li>
-                        <li>Planned Series</li>
-                        <li>Favorites</li>
-                        <li>Groups</li>
+                        <li className={styles.selected}>Overview</li>
                     </ul>
                     : headerData.mediaHidden ?
                         <ul>
-                            <li>Overview</li>
+                            <li className={styles.selected}>Overview</li>
                         </ul>
                         :
                         <ul>
-                            <li>Overview</li>
-                            <li>Watched Films</li>
-                            <li>Watched Series</li>
-                            <li>Planned Films</li>
-                            <li>Planned Series</li>
-                            <li>Favorites</li>
+                            <li className={styles.selected}>Overview</li>
                         </ul>}
             </div>
         </div>
