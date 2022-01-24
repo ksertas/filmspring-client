@@ -1,0 +1,127 @@
+@import '../../App.scss';
+
+.input__error_message {
+        @include input_error;
+    }
+    
+    label {
+        @include label_base;
+    }
+    
+    input[type=text], input[type=password] {
+        @include input_base;
+    }
+    
+    .save_btn {
+        @include btn;
+        @include btn_primary;
+    }
+    
+    .profile__container {
+        @include carousel;
+        
+        .profile_settings_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            gap: 2em;
+            padding: 2em 4em;
+            margin: 0 auto;
+        }
+    
+        .profile_personal {
+            display: flex;
+            color: white;
+            flex-direction: column;
+            width: 30em;
+        
+            textarea {
+                @include input_base;
+                resize: none;
+                width: 80%;
+                height: 6em;
+                padding: 0.75em 1em;
+            }
+        
+            button {
+                margin: 2em 0 1em;
+                width: 8em;
+            }
+    
+            .options__container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                width: fit-content;
+                gap: 1em;
+            }
+
+        }
+        
+        .profile_avatar {
+            color: white;
+            width: 30em;
+            height: 30em;
+            display: flex;
+            flex-direction: column;
+        
+            .avatar_fail {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+                padding: 0.5em 1em;
+                font-weight: 500;
+                color: map-get($map: $colors, $key: white-100);
+                background-color: map-get($map: $colors, $key: error-100);
+                }
+
+            .avatar__top {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 60%;
+                background-color: map-get($map: $colors, $key: gray-120);
+    
+                p {
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    margin-bottom: 1em;
+                }
+    
+                img {
+                    width: 10em;
+                    height: 10em;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+            
+            .avatar__bottom {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5em;
+                height: 40%;
+                background-color: map-get($map: $colors, $key: gray-100);
+        
+                .upload_btn {
+                    @include btn;
+                    @include btn_primary;
+                }
+    
+                .file_info {
+                    font-weight: 300;
+                    font-size: 0.85rem;
+                    color: map-get($map: $colors, $key: gray-20);
+                }
+            }
+        
+            input[type="file"] {
+                display: none;
+            }
+        }
+    }
