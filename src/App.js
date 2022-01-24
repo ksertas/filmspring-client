@@ -16,6 +16,7 @@ import ProtectedRoutes from './pages/ProtectedRoutes';
 import Register from './pages/register/Register';
 import Search from './pages/search/Search';
 import Settings from './pages/settings/Settings';
+import UnauthenticatedRoutes from './pages/UnauthenticatedRoutes';
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -32,9 +33,11 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route element={<UnauthenticatedRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
           <Route path="*" element={<Error />} />
         </Routes>
         {auth ? <FooterLoggedIn /> : <Footer />}
