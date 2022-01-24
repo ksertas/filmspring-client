@@ -137,11 +137,12 @@ export default function AccountSettingsForm() {
 
                             <form onSubmit={submitDeletion(handleDeletion)} className={styles.modal__delete_form}>
                                 <label htmlFor="old_password">Password</label>
-                                <input type="password" id="password" {...registerDeletion("password", {
-                                    required: "This field is required.",
-                                    minLength: { value: 8, message: "Password must be at least 8 characters long." },
-                                    maxLength: { value: 32, message: "Password must be 32 characters or shorter." }
-                                })} />
+                                <input onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
+                                    type="password" id="password" {...registerDeletion("password", {
+                                        required: "This field is required.",
+                                        minLength: { value: 8, message: "Password must be at least 8 characters long." },
+                                        maxLength: { value: 32, message: "Password must be 32 characters or shorter." }
+                                    })} />
                                 {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
                                 {invalidPassword && <p className={styles.input__error_message}>Incorrect password, please try again.</p>}
                                 <div className={styles.modal__btn_container}>
