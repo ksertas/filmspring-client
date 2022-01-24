@@ -49,7 +49,6 @@ export default function UserProvider({ children }) {
     async function sendLogoutReq() {
         try {
             let res = await axios.post("http://localhost:8080/logout");
-            console.log(res);
         } catch (e) {
             console.log(e);
         }
