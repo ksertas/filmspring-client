@@ -11,8 +11,8 @@ export default function Footer() {
             <SearchInputCta />
             <div>
                 <ul>
-                    <li className={styles.logo}><Novi /></li>
-                    <li className={styles.logo}><Github /></li>
+                    <li className={styles.logo}><a href="https://novi.nl" target="_blank" rel="noopener noreferrer"><Novi /></a></li>
+                    <li className={styles.logo}><a href="https://github.com/ksertas" target="_blank" rel="noopener noreferrer"><Github /></a></li>
                 </ul>
             </div>
         </footer>
