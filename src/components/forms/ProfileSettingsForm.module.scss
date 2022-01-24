@@ -1,24 +1,24 @@
 @import '../../App.scss';
 
-.input__error_message {
-        @include input_error;
-    }
+.profile__container {
+    @include carousel;
     
-    label {
-        @include label_base;
-    }
-    
-    input[type=text], input[type=password] {
-        @include input_base;
-    }
-    
-    .save_btn {
-        @include btn;
-        @include btn_primary;
-    }
-    
-    .profile__container {
-        @include carousel;
+    .input__error_message {
+            @include input_error;
+        }
+        
+        label {
+            @include label_base;
+        }
+        
+        input[type=text], input[type=password] {
+            @include input_base;
+        }
+        
+        .save_btn {
+            @include btn;
+            @include btn_primary;
+        }
         
         .profile_settings_wrapper {
             display: flex;

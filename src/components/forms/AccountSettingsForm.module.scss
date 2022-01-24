@@ -1,24 +1,25 @@
 @import '../../App.scss';
 
-.input__error_message {
-    @include input_error;
-}
 
-label {
-    @include label_base;
-}
-
-input[type=text], input[type=password] {
-    @include input_base;
-}
-
-.save_btn {
-    @include btn;
-    @include btn_primary;
-}
-    
 .account__container {
     @include carousel;
+    
+    .input__error_message {
+        @include input_error;
+    }
+    
+    label {
+        @include label_base;
+    }
+    
+    input[type=text], input[type=password] {
+        @include input_base;
+    }
+    
+    .save_btn {
+        @include btn;
+        @include btn_primary;
+    }
 
     .account_settings_wrapper {
         color: map-get($map: $colors, $key: white-100);
@@ -61,9 +62,14 @@ input[type=text], input[type=password] {
     }   
 }
 
-
 .modal__container {
     padding: 1em 1em;
+
+    .modal__delete_form {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 0;
+    }
 
     .modal__header {
         color: #ff6868;
