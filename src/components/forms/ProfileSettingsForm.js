@@ -37,7 +37,6 @@ export default function ProfileSettingsForm() {
 
     useEffect(() => {
         if (profileDetails) {
-            console.log(profileDetails);
             reset({
                 firstName: profileDetails.firstName,
                 lastName: profileDetails.lastName,
