@@ -11,6 +11,7 @@ export default function AccountSettingsForm() {
 
     const [accountDetails, setAccountDetails] = useState();
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [invalidPassword, setInvalidPassword] = useState(false);
     const { register: registerEmail, handleSubmit: submitEmail, formState: { errors: errorsEmail }, reset } = useForm();
     const { register: registerPassword, handleSubmit: submitPassword, formState: { errors: errorsPassword } } = useForm();
     const { register: registerDeletion, handleSubmit: submitDeletion, formState: { errors: errorsDeletion } } = useForm();
@@ -42,7 +43,11 @@ export default function AccountSettingsForm() {
         try {
             let res = await ax.patch(`/users/${user.username}/account`, data);
             window.location.reload();
+            setInvalidPassword(false);
         } catch (e) {
+            if (e.response.status === 401) {
+                setInvalidPassword(true);
+            }
             console.log(e);
         }
     }
@@ -87,6 +92,7 @@ export default function AccountSettingsForm() {
                         maxLength: { value: 32, message: "Password must be 32 characters or shorter." }
                     })} />
                     {errorsPassword.oldPassword && <p className={styles.input__error_message}>{errorsPassword.oldPassword.message}</p>}
+                    {invalidPassword && <p className={styles.input__error_message}>Incorrect password, please try again.</p>}
 
                     <label htmlFor="new_password">New password</label>
                     <input type="password" id="new_password" {...registerPassword("newPassword", {
