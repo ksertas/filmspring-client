@@ -38,8 +38,13 @@ export default function AccountSettingsForm() {
 
 
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        try {
+            let res = await ax.patch(`/users/${user.username}/account`, data);
+            window.location.reload();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const onSubmitAccountDeletion = (data) => {
@@ -77,13 +82,17 @@ export default function AccountSettingsForm() {
 
                     <label htmlFor="old_password">Old password</label>
                     <input type="password" id="old_password" {...registerPassword("oldPassword", {
-                        required: "This field is required."
+                        required: "This field is required.",
+                        minLength: { value: 8, message: "Password must be at least 8 characters long." },
+                        maxLength: { value: 32, message: "Password must be 32 characters or shorter." }
                     })} />
                     {errorsPassword.oldPassword && <p className={styles.input__error_message}>{errorsPassword.oldPassword.message}</p>}
 
                     <label htmlFor="new_password">New password</label>
                     <input type="password" id="new_password" {...registerPassword("newPassword", {
-                        required: "This field is required."
+                        required: "This field is required.",
+                        minLength: { value: 8, message: "Password must be at least 8 characters long." },
+                        maxLength: { value: 32, message: "Password must be 32 characters or shorter." }
                     })} />
                     {errorsPassword.newPassword && <p className={styles.input__error_message}>{errorsPassword.newPassword.message}</p>}
                     <button type="submit" className={styles.save_btn}>Save</button>
