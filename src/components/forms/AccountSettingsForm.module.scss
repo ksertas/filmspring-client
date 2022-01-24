@@ -1,0 +1,113 @@
+@import '../../App.scss';
+
+
+.account__container {
+    @include carousel;
+    
+    .input__error_message {
+        @include input_error;
+    }
+    
+    label {
+        @include label_base;
+    }
+    
+    input[type=text], input[type=password] {
+        @include input_base;
+    }
+    
+    .save_btn {
+        @include btn;
+        @include btn_primary;
+    }
+
+    .account_settings_wrapper {
+        color: map-get($map: $colors, $key: white-100);
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 4em;
+        padding: 2em 4em;
+    }
+
+    h4 {
+        font-weight: 500;
+        font-size: 1.35rem;
+    }
+
+    button {
+        margin: 2em 0 1em;
+        width: 8em;
+    }
+
+    .account_email {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 2em 0;
+    }
+
+    .account_password {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .account_deletion {
+        display: flex;
+        flex-direction: column;
+        button {
+            @include btn;
+            @include btn_danger;
+            width: fit-content;
+        }
+    }   
+}
+
+.modal__container {
+    padding: 1em 1em;
+
+    .input__error_message {
+        @include input_error;
+    }
+    
+    label {
+        @include label_base;
+    }
+    
+    input[type=text], input[type=password] {
+        @include input_base;
+    }
+
+    .modal__delete_form {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 0;
+    }
+
+    .modal__header {
+        color: #ff6868;
+        font-weight: 500;
+        font-size: 1.5rem;
+        padding: 0 0 0.5em;
+    }
+
+    .modal__description {
+        color: #f79e43;
+    }
+
+    .modal__btn_container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3em 0.8em 1em;
+        justify-content: flex-end;
+        gap: 2em;
+        .modal__cancel_btn {
+            @include btn;
+            @include btn_neutral_ghost;
+        }
+
+        .modal__delete_btn {
+            @include btn;
+            @include btn_danger;
+        }
+    }
+    }

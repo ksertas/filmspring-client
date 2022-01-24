@@ -39,9 +39,9 @@ export default function UserProvider({ children }) {
     }
 
     function logout() {
+        ToggleAuth(false);
         localStorage.clear();
         setUser(null);
-        ToggleAuth(false);
         sendLogoutReq();
 
     }
