@@ -38,7 +38,9 @@ export default function Profile() {
             }
         }
 
-        fetchUser();
+        if (localStorage.getItem("token")) {
+            fetchUser();
+        }
     }, []);
 
 
