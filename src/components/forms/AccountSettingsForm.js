@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Modal from 'react-modal/lib/components/Modal';
+import { useNavigate } from 'react-router-dom';
 import { ax } from '../../api/api';
 import { UserContext } from '../../context/UserContext';
 import styles from './AccountSettingsForm.module.scss';
 
 export default function AccountSettingsForm() {
 
-    const { user, setUser } = useContext(UserContext);
+    const { user, logout } = useContext(UserContext);
 
+    let navigate = useNavigate();
     const [accountDetails, setAccountDetails] = useState();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [invalidPassword, setInvalidPassword] = useState(false);
@@ -52,14 +54,20 @@ export default function AccountSettingsForm() {
         }
     }
 
-    const onSubmitAccountDeletion = (data) => {
-        console.log(data);
-        setModalIsOpen(true);
-    }
-
-    const handleDeletion = () => {
-        console.log("Account deleted.")
-        setModalIsOpen(false)
+    const handleDeletion = async (data) => {
+        try {
+            let res = await ax.post(`/users/${user.username}/account`, data);
+            if (res.status === 204) {
+                logout();
+                window.scrollTo(0, 0);
+                navigate("/");
+            }
+        } catch (e) {
+            if (e.response.status === 401) {
+                setInvalidPassword(true);
+            }
+            console.log(e)
+        }
     }
 
     return (
@@ -103,19 +111,11 @@ export default function AccountSettingsForm() {
                     {errorsPassword.newPassword && <p className={styles.input__error_message}>{errorsPassword.newPassword.message}</p>}
                     <button type="submit" className={styles.save_btn}>Save</button>
                 </form>
-                <form onSubmit={submitDeletion(onSubmitAccountDeletion)} className={styles.account_deletion}>
+                <div className={styles.account_deletion}>
                     <h4>Delete account</h4>
-
-                    <label htmlFor="old_password">Password</label>
-                    <input type="password" id="password" {...registerDeletion("password", {
-                        required: "This field is required."
-                    })} />
-                    {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
-                    <button type="submit">Delete account</button>
-
+                    <button onClick={() => setModalIsOpen(true)}>Delete account</button>
                     <Modal
                         isOpen={modalIsOpen}
-                        onRequestClose={() => setModalIsOpen(false)}
                         style={
                             {
                                 overlay: {
@@ -134,13 +134,24 @@ export default function AccountSettingsForm() {
                         <div className={styles.modal__container}>
                             <h4 className={styles.modal__header}>Account deletion</h4>
                             <p className={styles.modal__description}>Account deletion is permanent and cannot be undone. Are you sure you want to continue?</p>
-                            <div className={styles.modal__btn_container}>
-                                <button onClick={() => setModalIsOpen(false)} className={styles.modal__cancel_btn}>Cancel</button>
-                                <button onClick={handleDeletion} className={styles.modal__delete_btn}>Delete account permanently</button>
-                            </div>
+
+                            <form onSubmit={submitDeletion(handleDeletion)} className={styles.modal__delete_form}>
+                                <label htmlFor="old_password">Password</label>
+                                <input type="password" id="password" {...registerDeletion("password", {
+                                    required: "This field is required.",
+                                    minLength: { value: 8, message: "Password must be at least 8 characters long." },
+                                    maxLength: { value: 32, message: "Password must be 32 characters or shorter." }
+                                })} />
+                                {errorsDeletion.password && <p className={styles.input__error_message}>{errorsDeletion.password.message}</p>}
+                                {invalidPassword && <p className={styles.input__error_message}>Incorrect password, please try again.</p>}
+                                <div className={styles.modal__btn_container}>
+                                    <button onClick={() => setModalIsOpen(false)} className={styles.modal__cancel_btn}>Cancel</button>
+                                    <button type="submit" className={styles.modal__delete_btn}>Delete account permanently</button>
+                                </div>
+                            </form>
                         </div>
                     </Modal>
-                </form>
+                </div>
             </div>
         </div>
     )

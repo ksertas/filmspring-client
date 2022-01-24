@@ -65,6 +65,18 @@
 .modal__container {
     padding: 1em 1em;
 
+    .input__error_message {
+        @include input_error;
+    }
+    
+    label {
+        @include label_base;
+    }
+    
+    input[type=text], input[type=password] {
+        @include input_base;
+    }
+
     .modal__delete_form {
         display: flex;
         flex-direction: column;
