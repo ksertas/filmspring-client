@@ -4,6 +4,7 @@ import ConvertDataToImg from '../../../utils/ConvertDataToImg';
 import styles from './MediaTile.module.scss';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { Link } from 'react-router-dom';
 
 export default function MediaTile({ media, type }) {
 
@@ -30,8 +31,8 @@ export default function MediaTile({ media, type }) {
     return (<>
         {(media && posterSrc) ?
             <div className={styles.mediatile__container}>
-                <img src={ConvertDataToImg(posterSrc).src} alt="Media result" className={styles.mediatile__img} />
-                <p className={styles.mediatile__title}>{media.title}</p>
+                {isReady ? <Link to={`/${type}/${media.id}`}><img src={ConvertDataToImg(posterSrc).src} alt="Media result" className={styles.mediatile__img} /></Link> : <Skeleton width={150} height={200} />}
+                {isReady ? <Link to={`/${type}/${media.id}`}><p className={styles.mediatile__title}>{media.title}</p></Link> : <Skeleton width={120} height={30} />}
             </div>
             :
             <Skeleton height={250} width={160} />
