@@ -25,7 +25,7 @@ export default function NavBarLoggedIn() {
         <>
             <nav className={styles.nav}>
                 <div className={styles.nav__left}>
-                    <Link to="/profile"><Logo className={styles.logo} /></Link>
+                    <Link to={`/profile/${user.username}`}><Logo className={styles.logo} /></Link>
                 </div>
                 <div className={styles.nav__right}>
                     <ul>

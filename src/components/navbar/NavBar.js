@@ -9,7 +9,7 @@ export default function NavBar() {
         <>
             <nav className={styles.nav}>
                 <div className={styles.nav__left}>
-                    <Logo className={styles.logo} />
+                    <Link to="/"><Logo className={styles.logo} /></Link>
                 </div>
                 <div className={styles.nav__right}>
                     <ul>
