@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import Skeleton from 'react-loading-skeleton';
 import { useNavigate, useParams } from 'react-router-dom';
-import styles from './GroupProfile.module.scss';
-import MediaTile from '../../components/Carousel/tiles/MediaTile';
 import { ax } from '../../api/api';
+import TileContainer from '../../components/Carousel/TileContainer';
+import MediaTile from '../../components/Carousel/tiles/MediaTile';
+import UserListTile from '../../components/Carousel/tiles/UserListTile';
 import ProfileHeaderGroups from '../../components/profile_header/ProfileHeaderGroups';
 import { UserContext } from '../../context/UserContext';
-import Skeleton from 'react-loading-skeleton';
-import TileContainer from '../../components/Carousel/TileContainer';
-import GroupUserList from '../../components/Carousel/GroupUserList';
-import { AiOutlinePlus } from 'react-icons/ai';
-import UserListTile from '../../components/Carousel/tiles/UserListTile';
+import styles from './GroupProfile.module.scss';
 
 export default function GroupProfile() {
 
