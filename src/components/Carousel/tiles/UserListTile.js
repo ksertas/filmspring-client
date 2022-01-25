@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { TiDelete } from 'react-icons/ti';
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 import { ax } from '../../../api/api';
 import { UserContext } from '../../../context/UserContext';
 import ConvertDataToImg from '../../../utils/ConvertDataToImg';
@@ -25,8 +27,9 @@ export default function UserListTile({ groupData, userData, isGroupOwner }) {
         <div className={styles.tile__container}>
             {groupData && userData ? <>
                 <div className={styles.tile__user}>
-                    <img src={ConvertDataToImg(userData.avatar).src} alt="Group member avatar" className={styles.avatar} />
-                    <p className={styles.user__info}>{userData.firstName} {userData.lastName}<span className={styles.user_role}>{groupData.groupOwnerName === userData.username ? "Group owner" : "Member"}</span></p>
+                    {userData ? <Link to={`/profile/${userData.username}`} onClick={() => window.scrollTo(0, 0)}><img src={ConvertDataToImg(userData.avatar).src} alt="Group member avatar" className={styles.avatar} /></Link>
+                        : <Skeleton width={100} height={100} />}
+                    {userData ? <Link to={`/profile/${userData.username}`} onClick={() => window.scrollTo(0, 0)}><p className={styles.user__info}>{userData.firstName} {userData.lastName}<span className={styles.user_role}>{groupData.groupOwnerName === userData.username ? "Group owner" : "Member"}</span></p></Link> : <Skeleton width={250} height={40} />}
                 </div>
                 <div className={styles.tile__actions}>
                     {userData.username !== user.username && isGroupOwner ?
