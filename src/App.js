@@ -27,7 +27,8 @@ function App() {
         {auth ? <NavBarLoggedIn /> : <NavBar />}
         <Routes>
           <Route element={<ProtectedRoutes />}>
-            <Route path="/media" element={<Media />} />
+            <Route path="/films/:id" element={<Media type="films" />} />
+            <Route path="/series/:id" element={<Media type="series" />} />
             <Route path="/profile/:username" element={<Profile />} />
             <Route path="/group/:id" element={<GroupProfile />} />
             <Route path="/search" element={<Search />} />
