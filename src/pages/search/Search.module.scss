@@ -5,18 +5,12 @@
 }
 
 .search__container {
-
     .search__header {
         display: flex;
         justify-content: center;
         align-items: center;
         color: map-get($map: $colors, $key: white-100);
         font-size: 2rem;
-        padding: 4em 0 1em;
-        
-    }
-
-    .result_wrapper {
-        @include carousel;
+        padding: 4em 0 1em;   
     }
 }

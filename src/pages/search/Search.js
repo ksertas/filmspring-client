@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ax } from '../../api/api';
+import TileContainer from '../../components/Carousel/TileContainer';
 import MediaTile from '../../components/Carousel/tiles/MediaTile';
 import UserTile from '../../components/Carousel/tiles/UserTile';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
@@ -65,38 +66,21 @@ export default function Search() {
                 {searchParam.get("search") ? <h4>Results for "{searchParam.get("search")}"</h4> : <h4>No search query given.</h4>}
             </header>
             <main className={styles.results__container}>
-                <div className={styles.result_wrapper}>
-                    <header>
-                        <h4>Film results</h4>
-                    </header>
-                    <div>
-                        {filmResultsArr.map((film, i) => {
-                            return <li key={`f ${i}`}><MediaTile type="films" media={film} /></li>
-                        })}
-                    </div>
-                </div>
-
-                <div className={styles.result_wrapper}>
-                    <header>
-                        <h4>Series results</h4>
-                    </header>
-                    <div>
-                        {seriesResultsArr.map((series, i) => {
-                            return <li key={`s ${i}`}><MediaTile type="series" media={series} /></li>
-                        })}
-                    </div>
-                </div>
-
-                <div className={styles.result_wrapper}>
-                    <header>
-                        <h4>User results</h4>
-                    </header>
-                    <div>
-                        {userResultsArr.map((user, i) => {
-                            return <li key={`u ${i}`}><UserTile img={ConvertDataToImg(user.avatar).src} name={user.username} /></li>
-                        })}
-                    </div>
-                </div>
+                <TileContainer title="Film results" key={`fr`}>
+                    {filmResultsArr.map((film, i) => {
+                        return <li key={`f ${i}`}><MediaTile type="films" media={film} /></li>
+                    })}
+                </TileContainer>
+                <TileContainer title="Series results" key={`sr`}>
+                    {seriesResultsArr.map((series, i) => {
+                        return <li key={`s ${i}`}><MediaTile type="series" media={series} /></li>
+                    })}
+                </TileContainer>
+                <TileContainer title="User results" key={`ur`}>
+                    {userResultsArr.map((user, i) => {
+                        return <li key={`u ${i}`}><UserTile img={ConvertDataToImg(user.avatar).src} name={user.username} /></li>
+                    })}
+                </TileContainer>
             </main>
         </div>
     )

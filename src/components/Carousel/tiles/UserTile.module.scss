@@ -7,7 +7,12 @@
     padding: 2em 0;
 }
 
-.usertile__img {}
+.usertile__img {
+    width: 12em;
+    height: 12em;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 .usertile__name {
     text-align: center;
