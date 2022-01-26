@@ -6,6 +6,7 @@ import { ax } from '../../api/api';
 import TileContainer from '../../components/Carousel/TileContainer';
 import MediaTile from '../../components/Carousel/tiles/MediaTile';
 import UserListTile from '../../components/Carousel/tiles/UserListTile';
+import InvitePopup from '../../components/input/invite/InvitePopup';
 import ProfileHeaderGroups from '../../components/profile_header/ProfileHeaderGroups';
 import { UserContext } from '../../context/UserContext';
 import styles from './GroupProfile.module.scss';
@@ -17,6 +18,7 @@ export default function GroupProfile() {
     const { user } = useContext(UserContext);
     const { id } = useParams();
     const [groupDetails, setGroupDetails] = useState();
+    const [showInvitePopup, setShowInvitePopup] = useState(false);
     const navigate = useNavigate();
     let isGroupOwner = false;
     let plannedFilms = [];
@@ -80,10 +82,11 @@ export default function GroupProfile() {
                     </TileContainer>
 
                     <div className={styles.user_list__container}>
-                        <header>
+                        <header className={styles.invite_btn}>
                             <h4>Group Members</h4>
                             <div>
-                                <button><AiOutlinePlus />Invite user to group</button>
+                                <button onClick={() => { setShowInvitePopup(!showInvitePopup) }}><AiOutlinePlus />Invite user to group</button>
+                                {showInvitePopup && <InvitePopup />}
                             </div>
                         </header>
                         <div>

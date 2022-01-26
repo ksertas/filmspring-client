@@ -1,0 +1,59 @@
+@import '../../../App.scss';
+
+.popup__container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: clamp(15em, 30%, 30%);
+    height: auto;
+    margin: 0;
+    
+    .search_input {
+        padding: 1em 2em;
+        z-index: 0;
+
+        &:focus {
+            outline: 1px solid map-get($map: $colors, $key: primary);
+        }
+    }
+    
+    .result__list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        list-style: none;
+        margin: -1.5em 0 0;
+        height: 18em;
+        overflow: auto;
+        background-color: map-get($map: $colors, $key: black-100);
+        border: 1px solid map-get($map: $colors, $key: gray-80);
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            text-overflow: ellipsis;
+            padding: 1.25em 1.5em;
+            color: map-get($map: $colors, $key: white-100);
+            border-bottom: 1px solid map-get($map: $colors, $key: gray-80);
+            cursor: pointer;
+
+            &:hover {
+                background-color: map-get($map: $colors, $key: primary-120);
+            }
+
+            &:hover::after {
+                content: "Send invite";
+                font-size: 0.8rem;
+                font-weight: 600;
+                padding: 0.2em 1em;
+                color: map-get($map: $colors, $key: gray-100);
+                border-radius: 4px;
+                background-color: map-get($map: $colors, $key: primary-80);
+            }
+        }
+    }
+}
