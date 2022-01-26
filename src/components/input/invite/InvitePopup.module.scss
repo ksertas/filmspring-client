@@ -25,7 +25,8 @@
         align-items: flex-start;
         list-style: none;
         margin: -1.5em 0 0;
-        height: 18em;
+        height: auto;
+        max-height: 18em;
         overflow: auto;
         background-color: map-get($map: $colors, $key: black-100);
         border: 1px solid map-get($map: $colors, $key: gray-80);
@@ -35,7 +36,6 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            text-overflow: ellipsis;
             padding: 1.25em 1.5em;
             color: map-get($map: $colors, $key: white-100);
             border-bottom: 1px solid map-get($map: $colors, $key: gray-80);
