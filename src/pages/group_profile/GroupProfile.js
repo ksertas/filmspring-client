@@ -68,12 +68,12 @@ export default function GroupProfile() {
             {groupDetails ? <ProfileHeaderGroups data={groupDetails} isGroupOwner={isGroupOwner} /> : <Skeleton height={500} />}
             {groupDetails ?
                 <div>
-                    <TileContainer title="Planned Films" linkTo="#" key="pf">
+                    <TileContainer title="Planned Films" key="pf">
                         {plannedFilms.map((film, i) => {
                             return <li key={`pf ${i}`}><MediaTile media={film} type="films" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Planned Series" linkTo="#" key="ps">
+                    <TileContainer title="Planned Series" key="ps">
                         {plannedSeries.map((series, i) => {
                             return <li key={`ps ${i}`}><MediaTile media={series} type="series" /></li>
                         })}

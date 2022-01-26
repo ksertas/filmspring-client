@@ -92,32 +92,32 @@ export default function Profile() {
             {profileDetails ? <ProfileHeader headerData={profileDetails} isCurrent={isCurrentUser} /> : <Skeleton height={500} />}
             {profileDetails ?
                 <div>
-                    <TileContainer title="Watched Films" linkTo="#" key="wf">
+                    <TileContainer title="Watched Films" key="wf">
                         {watchedFilms.map((film, i) => {
                             return <li key={`wf ${i}`}><MediaTile media={film} type="films" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Watched Series" linkTo="#" key="ws">
+                    <TileContainer title="Watched Series" key="ws">
                         {watchedSeries.map((series, i) => {
                             return <li key={`ws ${i}`}><MediaTile media={series} type="series" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Planned Films" linkTo="#" key="pf">
+                    <TileContainer title="Planned Films" key="pf">
                         {plannedFilms.map((film, i) => {
                             return <li key={`pf ${i}`}><MediaTile media={film} type="films" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Planned Series" linkTo="#" key="ps">
+                    <TileContainer title="Planned Series" key="ps">
                         {plannedSeries.map((series, i) => {
                             return <li key={`ws ${i}`}><MediaTile media={series} type="series" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Favorite Films" linkTo="#" key="ff">
+                    <TileContainer title="Favorite Films" key="ff">
                         {favoriteFilms.map((film, i) => {
                             return <li key={`ff ${i}`}><MediaTile media={film} type="films" /></li>
                         })}
                     </TileContainer>
-                    <TileContainer title="Favorite Series" linkTo="#" key="ffs">
+                    <TileContainer title="Favorite Series" key="ffs">
                         {favoriteSeries.map((series, i) => {
                             return <li key={`fs ${i}`}><MediaTile media={series} type="series" /></li>
                         })}
@@ -130,7 +130,7 @@ export default function Profile() {
                 <div>
                     {profileDetails.groupsUserIsIn && profileDetails.groupsUserIsIn.length > 0 ?
                         <>
-                            <TileContainer title="Your Groups" linkTo="#">
+                            <TileContainer title="Your Groups">
                                 {groupsUserIsIn.map((group, i) => {
                                     return <li key={`g ${i}`}><GroupTile data={group} /></li>
                                 })}

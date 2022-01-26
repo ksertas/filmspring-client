@@ -10,18 +10,32 @@
         max-width: 100%;
         overflow-x: auto;
         white-space: nowrap;
-
+        
         ul {
             display: flex;  
             justify-content: flex-start;
             align-items: center;
-            list-style: none;
             margin-bottom: 2em;
             padding: 0 4em;
         }
         li {
             flex-basis: 100%;
             display: inline-block;
+            margin: 0 2em;
+        }
+    }
+    
+    .expanded {
+        ul {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 2em;
+            padding: 0 4em;
+            flex-wrap: wrap;
+        }
+
+        li {
             margin: 0 2em;
         }
     }
