@@ -1,16 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { ax } from '../../api/api';
+import MediaTile from '../../components/Carousel/tiles/MediaTile';
+import UserTile from '../../components/Carousel/tiles/UserTile';
+import ConvertDataToImg from '../../utils/ConvertDataToImg';
 import styles from './Search.module.scss';
-import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
 
 export default function Search() {
 
     document.body.classList.add(styles.background);
 
+    const [searchParam, setSearchParam] = useSearchParams();
+    const [isReady, setReady] = useState(false);
+    const [filmResults, setFilmResults] = useState();
+    const [seriesResults, setSeriesResults] = useState();
+    const [userResults, setUserResults] = useState();
+    let filmResultsArr = [];
+    let seriesResultsArr = [];
+    let userResultsArr = [];
+
+    useEffect(() => {
+        async function fetchResults(query) {
+            try {
+                let filmRes = await ax.get(`/films?search=${query}`);
+                setFilmResults(filmRes.data);
+
+                let seriesRes = await ax.get(`/series?search=${query}`);
+                setSeriesResults(seriesRes.data);
+
+                let userRes = await ax.get(`/users?search=${query}`);
+                setUserResults(userRes.data);
+
+                setReady(true);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        if (searchParam.get("search")) {
+            fetchResults(searchParam.get("search"));
+        }
+    }, []);
+
+    if (isReady) {
+        if (filmResults) {
+            for (let i = 0; i < filmResults.length; i++) {
+                filmResultsArr.push(filmResults[i]);
+            }
+        }
+        if (seriesResults) {
+            for (let i = 0; i < seriesResults.length; i++) {
+                seriesResultsArr.push(seriesResults[i]);
+            }
+        }
+        if (userResults) {
+            for (let i = 0; i < userResults.length; i++) {
+                userResultsArr.push(userResults[i]);
+            }
+        }
+    }
+
     return (
         <div className={styles.search__container}>
             <header className={styles.search__header}>
-                <h4>Results for {"search_term"}</h4>
+                {searchParam.get("search") ? <h4>Results for "{searchParam.get("search")}"</h4> : <h4>No search query given.</h4>}
             </header>
             <main className={styles.results__container}>
                 <div className={styles.result_wrapper}>
@@ -18,20 +70,9 @@ export default function Search() {
                         <h4>Film results</h4>
                     </header>
                     <div>
-                        <Carousel
-                            plugins={[
-                                'arrows',
-                                {
-                                    resolve: slidesToShowPlugin,
-                                    options: {
-                                        numberOfSlides: 4
-                                    }
-                                }
-                            ]} draggable={true}
-                            animationSpeed={250}>
-                            <div></div>
-                            <div></div>
-                        </Carousel>
+                        {filmResultsArr.map((film, i) => {
+                            return <li key={`f ${i}`}><MediaTile type="films" media={film} /></li>
+                        })}
                     </div>
                 </div>
 
@@ -40,20 +81,9 @@ export default function Search() {
                         <h4>Series results</h4>
                     </header>
                     <div>
-                        <Carousel
-                            plugins={[
-                                'arrows',
-                                {
-                                    resolve: slidesToShowPlugin,
-                                    options: {
-                                        numberOfSlides: 4
-                                    }
-                                }
-                            ]} draggable={true}
-                            animationSpeed={250}>
-                            <div></div>
-                            <div></div>
-                        </Carousel>
+                        {seriesResultsArr.map((series, i) => {
+                            return <li key={`s ${i}`}><MediaTile type="series" media={series} /></li>
+                        })}
                     </div>
                 </div>
 
@@ -62,20 +92,9 @@ export default function Search() {
                         <h4>User results</h4>
                     </header>
                     <div>
-                        <Carousel
-                            plugins={[
-                                'arrows',
-                                {
-                                    resolve: slidesToShowPlugin,
-                                    options: {
-                                        numberOfSlides: 4
-                                    }
-                                }
-                            ]} draggable={true}
-                            animationSpeed={250}>
-                            <div></div>
-                            <div></div>
-                        </Carousel>
+                        {userResultsArr.map((user, i) => {
+                            return <li key={`u ${i}`}><UserTile img={ConvertDataToImg(user.avatar).src} name={user.username} /></li>
+                        })}
                     </div>
                 </div>
             </main>
