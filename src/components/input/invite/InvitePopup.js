@@ -42,7 +42,7 @@ export default function InvitePopup() {
 
     return (
         <div className={styles.popup__container}>
-            <input className={styles.search_input} type="text" placeholder="Search users..." onChange={(e) => handleChange(e)} />
+            <input className={styles.search_input} type="text" placeholder="Search users..." autoFocus onChange={(e) => handleChange(e)} />
             {foundUsers ?
                 <ul className={styles.result__list}>
                     {inviteError && <p className={styles.invite_error}>User is already invited</p>}
