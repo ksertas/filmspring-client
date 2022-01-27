@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BsFillPencilFill } from 'react-icons/bs';
 import Skeleton from 'react-loading-skeleton';
+import { useNavigate } from 'react-router-dom';
 import { ax } from '../../api/api';
 import { UserContext } from '../../context/UserContext';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
@@ -9,11 +10,21 @@ import styles from './ProfileHeaderGroups.module.scss';
 export default function ProfileHeaderGroups({ data, isGroupOwner }) {
 
     const { user } = useContext(UserContext);
+    let navigate = useNavigate();
+
+    const deleteGroupHandler = async () => {
+        try {
+            let res = await ax.delete(`/groups/${data.id}`);
+            navigate(`/profile/${user.username}`);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     const leaveHandler = async () => {
         try {
             let res = ax.delete(`/groups/${data.id}/users/${user.username}/leave`);
-            window.location.reload();
+            navigate(`/profile/${user.username}`);
         } catch (e) {
             console.log(e);
         }
@@ -23,7 +34,10 @@ export default function ProfileHeaderGroups({ data, isGroupOwner }) {
         <div className={styles.header__container}>
             <div className={styles.header__options}>
                 {data ?
-                    isGroupOwner ? <button><BsFillPencilFill />Edit group profile</button> : <button onClick={leaveHandler} className={styles.leave_group}>Leave group</button>
+                    isGroupOwner ? <>
+                        <button><BsFillPencilFill />Edit group profile</button>
+                        <button onClick={deleteGroupHandler} className={styles.delete_group}>Delete group</button>
+                    </> : <button onClick={leaveHandler} className={styles.leave_group}>Leave group</button>
                     : ''}
             </div>
             <div className={styles.header__group}>
