@@ -8,6 +8,7 @@ import CreateGroup from '../../components/Carousel/CreateGroup';
 import TileContainer from '../../components/Carousel/TileContainer';
 import GroupTile from '../../components/Carousel/tiles/GroupTile';
 import MediaTile from '../../components/Carousel/tiles/MediaTile';
+import InvitedNotif from '../../components/input/invite/InvitedNotif';
 import ProfileHeader from '../../components/profile_header/ProfileHeader';
 import { UserContext } from '../../context/UserContext';
 import styles from './Profile.module.scss';
@@ -27,6 +28,7 @@ export default function Profile() {
     let favoriteFilms = [];
     let favoriteSeries = [];
     let groupsUserIsIn = [];
+    let groupInvitationIdsArr = [];
 
     useEffect(() => {
         async function fetchUser() {
@@ -85,10 +87,18 @@ export default function Profile() {
                 groupsUserIsIn.push(profileDetails.groupsUserIsIn[i]);
             }
         }
+
+        if (profileDetails.groupInvitationIds) {
+            for (let i = 0; i < profileDetails.groupInvitationIds.length; i++) {
+                groupInvitationIdsArr.push(profileDetails.groupInvitationIds[i]);
+            }
+        }
+
     }
 
     return (
         <div className={styles.profile__container}>
+            {(profileDetails && groupInvitationIdsArr.length > 0) && <InvitedNotif inviteArr={groupInvitationIdsArr} />}
             {profileDetails ? <ProfileHeader headerData={profileDetails} isCurrent={isCurrentUser} /> : <Skeleton height={500} />}
             {profileDetails ?
                 <div>
@@ -130,7 +140,7 @@ export default function Profile() {
                 <div>
                     {profileDetails.groupsUserIsIn && profileDetails.groupsUserIsIn.length > 0 ?
                         <>
-                            <TileContainer title="Your Groups">
+                            <TileContainer title="Groups">
                                 {groupsUserIsIn.map((group, i) => {
                                     return <li key={`g ${i}`}><GroupTile data={group} /></li>
                                 })}
