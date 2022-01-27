@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsFillPencilFill } from 'react-icons/bs';
 import Skeleton from 'react-loading-skeleton';
+import { ax } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
 import styles from './ProfileHeaderGroups.module.scss';
 
 export default function ProfileHeaderGroups({ data, isGroupOwner }) {
+
+    const { user } = useContext(UserContext);
+
+    const leaveHandler = async () => {
+        try {
+            let res = ax.delete(`/groups/${data.id}/users/${user.username}/leave`);
+            window.location.reload();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div className={styles.header__container}>
             <div className={styles.header__options}>
                 {data ?
-                    isGroupOwner ? <button><BsFillPencilFill />Edit group profile</button> : ''
+                    isGroupOwner ? <button><BsFillPencilFill />Edit group profile</button> : <button onClick={leaveHandler} className={styles.leave_group}>Leave group</button>
                     : ''}
             </div>
             <div className={styles.header__group}>

@@ -18,6 +18,10 @@
         @include btn;
         @include btn_primary;
     }
+
+    .leave_group {
+        @include btn_danger;
+    }
 }
 
 .header__group {
