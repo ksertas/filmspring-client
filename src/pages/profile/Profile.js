@@ -98,6 +98,7 @@ export default function Profile() {
 
     return (
         <div className={styles.profile__container}>
+            {!profileDetails && <p className={styles.reload_message}>Please reload the page if loading takes longer than usual.</p>}
             {(profileDetails && groupInvitationIdsArr.length > 0) && <InvitedNotif inviteArr={groupInvitationIdsArr} />}
             {profileDetails ? <ProfileHeader headerData={profileDetails} isCurrent={isCurrentUser} /> : <Skeleton height={500} />}
             {profileDetails ?
@@ -134,7 +135,7 @@ export default function Profile() {
                     </TileContainer>
                 </div>
                 :
-                <Skeleton height={200} />}
+                ''}
 
             {profileDetails && isCurrentUser ?
                 <div>
