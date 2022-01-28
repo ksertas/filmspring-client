@@ -35,7 +35,7 @@ export default function ProfileHeaderGroups({ data, isGroupOwner }) {
             <div className={styles.header__options}>
                 {data ?
                     isGroupOwner ? <>
-                        <button><BsFillPencilFill />Edit group profile</button>
+                        {/* <button><BsFillPencilFill />Edit group profile</button> */}
                         <button onClick={deleteGroupHandler} className={styles.delete_group}>Delete group</button>
                     </> : <button onClick={leaveHandler} className={styles.leave_group}>Leave group</button>
                     : ''}
