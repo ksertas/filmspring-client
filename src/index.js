@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
       <UserProvider>
-        <SkeletonTheme baseColor="#a37f5f" highlightColor="#d19e71" duration={2}>
+        <SkeletonTheme baseColor="#423a2d" highlightColor="#544630" duration={2}>
           <App />
         </SkeletonTheme>
       </UserProvider>
