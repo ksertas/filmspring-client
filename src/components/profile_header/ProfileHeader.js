@@ -2,12 +2,16 @@ import React from 'react';
 import styles from './ProfileHeader.module.scss';
 import { BsFillPencilFill } from 'react-icons/bs';
 import ConvertDataToImg from '../../utils/ConvertDataToImg';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileHeader({ headerData, isCurrent }) {
+
+    let navigate = useNavigate();
+
     return (
         <div className={styles.header__container}>
             <div className={styles.header__options}>
-                {isCurrent ? <button className={styles.header__edit_profile}><BsFillPencilFill />Edit profile</button> : ''}
+                {isCurrent ? <button onClick={() => navigate("/settings")} className={styles.header__edit_profile}><BsFillPencilFill />Edit profile</button> : ''}
             </div>
             <div className={styles.header__person}>
                 <img src={ConvertDataToImg(headerData.avatar).src} alt={headerData.username} className={styles.person__img} />
