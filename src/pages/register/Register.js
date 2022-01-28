@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import styles from './Register.module.scss';
 import { AiFillEye } from 'react-icons/ai';
@@ -13,7 +13,7 @@ export default function Register() {
 
     const [showPassword, setShowPassword] = useState(false);
     const [registerError, setRegisterError] = useState(false);
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     const password = useRef({});
     password.current = watch("password", "");
 
@@ -29,6 +29,15 @@ export default function Register() {
             console.log(e);
         }
     }
+
+    useEffect(() => {
+        if (sessionStorage.getItem("emailCta")) {
+            reset({
+                email: sessionStorage.getItem("emailCta")
+            })
+        }
+    }, []);
+
 
     return (
         <div className={styles.register__container}>
