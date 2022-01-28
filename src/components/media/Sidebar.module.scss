@@ -23,12 +23,23 @@
         @include btn;
     }
 
-    .button_watch {
+    .button_add_watched {
         @include btn_primary;
     }
-
-    .button_plan {
+    .button_add_planned {
         @include btn_neutral;
+    }
+    .button_add_favorited {
+        @include btn_secondary;
+    }
+    .button_remove_watched {
+        @include btn_danger;
+    }
+    .button_remove_planned {
+        @include btn_danger;
+    }
+    .button_remove_favorited {
+        @include btn_danger_ghost;
     }
 }
 

@@ -121,6 +121,16 @@ $colors: (
   background-color: transparent;
 }
 
+@mixin btn_danger_ghost {
+  color: map-get($map: $colors, $key: error-100);
+  border: 2px solid map-get($map: $colors, $key: error-100);
+  background-color: transparent;
+  &:hover {
+    color: map-get($map: $colors, $key: error-120);
+    border: 2px solid map-get($map: $colors, $key: error-120);
+  }
+}
+
 @mixin label_base {
     color: map-get($map: $colors, $key: white-100);
     padding: 0.75em 0;

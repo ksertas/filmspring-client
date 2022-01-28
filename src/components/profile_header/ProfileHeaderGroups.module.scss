@@ -18,6 +18,15 @@
         @include btn;
         @include btn_primary;
     }
+
+    .delete_group {
+        @include btn_danger;
+        margin: 0 1em;
+    }
+
+    .leave_group {
+        @include btn_danger;
+    }
 }
 
 .header__group {
