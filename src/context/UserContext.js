@@ -20,7 +20,7 @@ export default function UserProvider({ children }) {
         localStorage.setItem("token", token);
 
         // gather extra user info with username and put that info in context
-        const results = await axios.get(`http://localhost:8080/api/users/${jwtDecode(token).sub}`, {
+        const results = await axios.get(`https://localhost:8080/api/users/${jwtDecode(token).sub}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -48,7 +48,7 @@ export default function UserProvider({ children }) {
 
     async function sendLogoutReq() {
         try {
-            let res = await axios.post("http://localhost:8080/logout");
+            let res = await axios.post("https://localhost:8080/logout");
         } catch (e) {
             console.log(e);
         }

@@ -19,7 +19,7 @@ export default function Register() {
 
     const onSubmit = async (data) => {
         try {
-            let res = await axios.post("http://localhost:8080/api/users", data);
+            let res = await axios.post("https://localhost:8080/api/users", data);
             setRegisterError(false);
             if (res.status === 201) {
                 navigate("/login");

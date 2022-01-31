@@ -33,7 +33,7 @@ export default function Login() {
 
     const loginUser = async (data) => {
         try {
-            const result = await axios.post("http://localhost:8080/api/users/login", data);
+            const result = await axios.post("https://localhost:8080/api/users/login", data);
             setLoginStatus(result.status);
             setJwt(result.data.jwt)
 
